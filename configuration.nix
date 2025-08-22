@@ -91,6 +91,7 @@
     isNormalUser = true;
     description = "Julian Poyourow";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
+    hashedPassword = "$y$j9T$anxWvMNhRJmSoFzgYKY1U/$AivFwYsS/9Cwh8D7OAEjbdA.wnbE1VQr9MwNOlXpC43";
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
