@@ -3,5 +3,5 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [ cura ];
+  environment.systemPackages = with pkgs; [ cura-appimage ];
 }
