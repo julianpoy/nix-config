@@ -3,10 +3,17 @@
   pkgs,
   ...
 }: {
+  environment.systemPackages = with pkgs; [
+    gnupg
+    yubikey-personalization
+    pinentry-qt
+  ];
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
+  programs.gpg.enable = true;
+  services.pcscd.enable = true;
 }
