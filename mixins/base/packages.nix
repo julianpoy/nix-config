@@ -25,5 +25,8 @@
     dnsutils
     cifs-utils
     wakeonlan
+    ghostty
+    qpwgraph
+    ncdu
   ];
 }
