@@ -24,5 +24,6 @@
 
     dnsutils
     cifs-utils
+    wakeonlan
   ];
 }
