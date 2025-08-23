@@ -1,9 +1,9 @@
-{specialArgs, disko, ...}:
+{specialArgs, ...}:
 specialArgs.nixpkgs-2505.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
   modules = [
-    disko.nixosModules.disko
+    specialArgs.disko.nixosModules.disko
    ./disk-config.nix
 
     ./configuration.nix
