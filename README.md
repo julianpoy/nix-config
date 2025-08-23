@@ -25,10 +25,10 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 1. Boot into nix (non-graphical is fine)
 2. Set a password
 3. Generate a hardware config for the machine and copy that into the associated host
-4. Run the command below (from another machine on the network)
+4. Run the command below (from another machine on the network, or using `localhost`) with the HOST you'd like
 
 ```
-nix run github:nix-community/nixos-anywhere --extra-experimental-features nix-command --extra-experimental-features flakes -- --flake '.#coop-atlas' --target-host nixos@IP_ADDRESS
+nix run github:nix-community/nixos-anywhere --extra-experimental-features nix-command --extra-experimental-features flakes -- --flake github:julianpoy/nix-config#HOST --target-host nixos@IP_ADDRESS
 ```
 
 #### Updating Config
