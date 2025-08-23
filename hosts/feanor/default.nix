@@ -31,6 +31,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/spotify
     ../../mixins/steam
     ../../mixins/vlc
+    ../../mixins/xone
     ../../mixins/yubikey
     ../../mixins/zoom-us
   ];
