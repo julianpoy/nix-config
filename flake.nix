@@ -1,6 +1,9 @@
 {
   description = "Julian's NixOS configuration";
   inputs = {
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs";
@@ -12,6 +15,7 @@
 
   outputs = inputs @ {
     self,
+    disko,
     nixpkgs,
     ...
   }: let
