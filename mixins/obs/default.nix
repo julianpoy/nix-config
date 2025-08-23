@@ -12,7 +12,7 @@
     # optional Nvidia hardware acceleration
     package = (
       pkgs.obs-studio.override {
-        cudaSupport = config.hardware.nvidia.modesetting.enable;
+        cudaSupport = config.hardware.nvidia.enabled;
       }
     );
 
