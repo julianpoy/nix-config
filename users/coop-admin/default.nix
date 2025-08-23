@@ -6,7 +6,7 @@
 }: {
   users.users.coopadmin = {
     isNormalUser = true;
-    description = "bawk";
+    description = "Admin";
     extraGroups = [
       "networkmanager"
     ];
