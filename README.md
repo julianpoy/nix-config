@@ -53,3 +53,17 @@ nixos-rebuild switch --flake github:julianpoy/nix-config --target-host "root@IP_
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /path/to/disk-config.nix
 ```
 
+### REPL
+
+```
+nix repl --extra-experimental-features flakes
+```
+
+then
+
+```
+:lf github:julianpoy/nix-config
+```
+
+then hit tab to see the variables in scope.
+
