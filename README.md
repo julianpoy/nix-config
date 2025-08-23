@@ -31,3 +31,17 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 nix run github:nix-community/nixos-anywhere --extra-experimental-features nix-command --extra-experimental-features flakes -- --flake '.#coop-atlas' --target-host nixos@IP_ADDRESS
 ```
 
+#### Updating Config
+
+After setting a machine up with flake support run either:
+
+```
+nixos-rebuild switch --flake github:julianpoy/nix-config
+```
+
+or
+
+```
+nixos-rebuild switch --flake github:julianpoy/nix-config --target-host "root@<ip address>"
+```
+
