@@ -4,6 +4,6 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    nextcloud-desktop
+    nextcloud-client
   ];
 }
