@@ -14,6 +14,5 @@
     enable = true;
     enableSSHSupport = true;
   };
-  programs.gpg.enable = true;
   services.pcscd.enable = true;
 }
