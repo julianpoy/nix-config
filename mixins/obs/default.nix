@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -11,7 +12,7 @@
     # optional Nvidia hardware acceleration
     package = (
       pkgs.obs-studio.override {
-        cudaSupport = (config.lib.mkIf (config.hardware.nvidia.modesetting.enable) true);
+        cudaSupport = (lib.mkIf (config.hardware.nvidia.modesetting.enable) true);
       }
     );
 
