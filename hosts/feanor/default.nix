@@ -4,7 +4,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
   system = "x86_64-linux";
   modules = [
     specialArgs.disko.nixosModules.disko
-   ./disk-config.nix
+    ./disk-config.nix
 
     ./configuration.nix
     ./hardware-configuration.nix
