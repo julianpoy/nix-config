@@ -25,6 +25,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/gimp
     ../../mixins/libreoffice
     ../../mixins/logitech
+    ../../mixins/neovim
     ../../mixins/nextcloud-desktop
     ../../mixins/obs
     ../../mixins/openrgb
