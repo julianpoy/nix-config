@@ -6,7 +6,7 @@
   environment.systemPackages = with pkgs; [
     yubikey-personalization
     yubikey-manager
-    #yubikey-manager-qt
+    yubioath-flutter
     yubikey-agent
     pinentry-qt
     gnupg

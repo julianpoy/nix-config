@@ -13,6 +13,7 @@
     ./packages.nix
     ./shell.nix
     ./tmux.nix
+    ./yubikey-ssh.nix
   ];
 
   home-manager.backupFileExtension = "backup";
