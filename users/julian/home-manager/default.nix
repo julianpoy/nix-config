@@ -11,6 +11,7 @@
     ./libvirt.nix
     ./nvim.nix
     ./packages.nix
+    ./shell.nix
     ./tmux.nix
   ];
 

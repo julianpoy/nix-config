@@ -16,6 +16,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/base
 
     ../../mixins/appimage
+    ../../mixins/coder
     ../../mixins/cura
     ../../mixins/dbeaver
     ../../mixins/discord

@@ -10,6 +10,7 @@
     wget
     curl
     tmux
+    tmate
     htop
     btop
     git
@@ -17,6 +18,9 @@
     gnumake
     alejandra
     python311
+    zip
+    unzip
+    jq
 
     usbutils
     pciutils
@@ -28,5 +32,7 @@
     ghostty
     qpwgraph
     ncdu
+    powerline-fonts
+    netcat
   ];
 }
