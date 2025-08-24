@@ -3,9 +3,8 @@
   pkgs,
   ...
 }: {
-  # Replace legacy command-not-found with nix-index
+  # Disable legacy command-not-found since we're using flakes
   programs.command-not-found.enable = false;
-  programs.nix-index.enable = true;
 
   nix.settings.experimental-features = [
     "nix-command"
