@@ -8,8 +8,9 @@
     ./git.nix
     ./gtk.nix
     ./libvirt.nix
-    ./packages.nix
     ./nvim.nix
+    ./packages.nix
+    ./tmux.nix
   ];
 
   home-manager.backupFileExtension = "backup";

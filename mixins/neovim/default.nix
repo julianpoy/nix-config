@@ -24,5 +24,6 @@
     ripgrep
     fd
     gh
+    nodejs_24
   ];
 }

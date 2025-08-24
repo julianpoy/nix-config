@@ -16,6 +16,7 @@
       tag.gpgSign = true;
       user.signingkey = "0x72DC5D65A37D62C2";
       gpg.format = "openpgp";
+      push.autoSetupRemote = true;
     };
   };
 }
