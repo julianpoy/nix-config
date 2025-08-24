@@ -8,7 +8,6 @@
     ./discord.nix
     ./ghostty.nix
     ./git.nix
-    ./gtk.nix
     ./libvirt.nix
     ./nvim.nix
     ./packages.nix

@@ -3,6 +3,10 @@
   pkgs,
   ...
 }: {
+  # Replace legacy command-not-found with nix-index
+  programs.command-not-found.enable = false;
+  programs.nix-index.enable = true;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

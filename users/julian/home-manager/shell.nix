@@ -23,6 +23,8 @@
       k = "kubectl";
     };
 
+    # Different from the global fish enablement -- this is just for home-manager
+    programs.fish.enable = true;
     programs.fish.functions = {
       fxap = ''
         coder port-forward fxa2 --tcp 3030,3031,3035,9299,9090,37255,9000,1111,8290 $argv
