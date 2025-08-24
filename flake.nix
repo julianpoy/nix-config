@@ -11,6 +11,9 @@
     nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager-2505.url = "github:nix-community/home-manager/release-25.05";
     home-manager-2505.inputs.nixpkgs.follows = "nixpkgs-2505";
+
+    dotfiles.url = "github:julianpoy/dotfiles?rev=832d9b46e0ca71f7c58bf9f42da8da1b9d3080d8";
+    dotfiles.flake = false;
   };
 
   outputs = inputs @ {
@@ -28,7 +31,7 @@
       ;
   in {
     devShells = let
-      systems = ["x86_64-linux" "aarch64-linux" "aaarch64-darwin"];
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
     in
       listToAttrs (map (system: {
           name = system;

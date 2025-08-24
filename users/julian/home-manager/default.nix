@@ -9,5 +9,8 @@
     ./gtk.nix
     ./libvirt.nix
     ./packages.nix
+    ./nvim.nix
   ];
+
+  home-manager.backupFileExtension = "backup";
 }

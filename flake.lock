@@ -20,6 +20,23 @@
         "type": "github"
       }
     },
+    "dotfiles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752853614,
+        "narHash": "sha256-HkCIvSV2dx5qQ+4zV/6SQQownpDgJ0rjQzORFNKi2Lc=",
+        "owner": "julianpoy",
+        "repo": "dotfiles",
+        "rev": "832d9b46e0ca71f7c58bf9f42da8da1b9d3080d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "julianpoy",
+        "repo": "dotfiles",
+        "rev": "832d9b46e0ca71f7c58bf9f42da8da1b9d3080d8",
+        "type": "github"
+      }
+    },
     "home-manager-2505": {
       "inputs": {
         "nixpkgs": [
@@ -104,6 +121,7 @@
     "root": {
       "inputs": {
         "disko": "disko",
+        "dotfiles": "dotfiles",
         "home-manager-2505": "home-manager-2505",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

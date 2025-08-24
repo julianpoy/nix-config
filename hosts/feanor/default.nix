@@ -10,6 +10,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ./hardware-configuration.nix
 
     (import "${specialArgs.home-manager-2505}/nixos")
+    ({ ... }: { home-manager.extraSpecialArgs = specialArgs; })
     (import ../../users/julian {stateVersion = "25.05";})
 
     ../../mixins/base
