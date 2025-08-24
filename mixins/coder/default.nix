@@ -3,5 +3,5 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [ coder ];
+  environment.systemPackages = with pkgs; [coder];
 }

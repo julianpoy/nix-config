@@ -4,9 +4,15 @@
   ...
 }: {
   services.flatpak.packages = [
-    { appId = "com.discordapp.Discord"; origin = "flathub"; commit = "48e1c1a3c3be33890282b6f8c923e136f71a7ba6"; }
+    {
+      appId = "com.discordapp.Discord";
+      origin = "flathub";
+      # Use `flatpak remote-info --log flathub com.discordapp.Discord | less` to find latest commit.
+      commit = "7ce95d01be462891d7886c5d134d478f27c9b0415de459cf04cd8fc5bc86478a";
+    }
   ];
 
+  # By default Discord Flatpak is sandboxed. We give it access to home so we can upload files and such.
   services.flatpak.overrides = {
     "com.discordapp.Discord".Context = {
       filesystems = [

@@ -3,5 +3,5 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [ dbeaver-bin ];
+  environment.systemPackages = with pkgs; [dbeaver-bin];
 }

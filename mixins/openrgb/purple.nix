@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   no-rgb = pkgs.writeScriptBin "no-rgb" ''
     #!/bin/sh
     NUM_DEVICES=$(${pkgs.openrgb}/bin/openrgb --noautoconnect --list-devices | grep -E '^[0-9]+: ' | wc -l)
@@ -10,8 +13,8 @@ let
   '';
 in {
   config = {
-    services.udev.packages = [ pkgs.openrgb ];
-    boot.kernelModules = [ "i2c-dev" ];
+    services.udev.packages = [pkgs.openrgb];
+    boot.kernelModules = ["i2c-dev"];
     hardware.i2c.enable = true;
 
     systemd.services.no-rgb = {
@@ -20,7 +23,7 @@ in {
         ExecStart = "${no-rgb}/bin/no-rgb";
         Type = "oneshot";
       };
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = ["multi-user.target"];
     };
   };
 }

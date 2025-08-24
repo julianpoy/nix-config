@@ -1,5 +1,10 @@
-{ specialArgs, pkgs, lib, config, ... }:
 {
+  specialArgs,
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   home-manager.users.julian = {
     home.shellAliases = {
       gpo = "git push origin";

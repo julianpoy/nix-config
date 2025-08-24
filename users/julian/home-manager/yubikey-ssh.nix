@@ -1,5 +1,8 @@
-{ specialArgs, pkgs, ... }:
 {
+  specialArgs,
+  pkgs,
+  ...
+}: {
   programs.ssh.startAgent = false;
 
   environment.shellInit = ''
@@ -7,4 +10,3 @@
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
   '';
 }
-

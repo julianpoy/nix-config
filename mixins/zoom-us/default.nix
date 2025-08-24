@@ -3,5 +3,5 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [ zoom-us ];
+  environment.systemPackages = with pkgs; [zoom-us];
 }
