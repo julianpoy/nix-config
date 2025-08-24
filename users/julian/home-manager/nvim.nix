@@ -3,9 +3,8 @@
 
   home-manager.users.julian = {
   programs.neovim.enable = true;
-  # If your repo path is dotfiles/nvim/init.lua:
   xdg.configFile."nvim/init.lua".source =
-    "${specialArgs.dotfiles}/nvim/init.lua";
+    "${specialArgs.dotfiles}/init.lua";
 };
 
   # If you actually have a full nvim/ directory, use this instead:
