@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./ghostty.nix
     ./git.nix
     ./gtk.nix
     ./libvirt.nix
