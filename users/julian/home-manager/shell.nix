@@ -3,7 +3,6 @@
   home-manager.users.julian = {
     home.shellAliases = {
       gpo = "git push origin";
-      gpo = "git push origin";
       gpoh = "git push origin HEAD";
       gp = "git pull origin HEAD";
       gf = "git fetch --all";
@@ -20,6 +19,13 @@
     };
 
     programs.fish.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      fishPlugins.done
+      fishPlugins.fzf-fish
+      fishPlugins.hydro
+      fzf
+    ];
 
     programs.fish.functions = {
       fxap = ''
