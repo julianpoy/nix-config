@@ -6,7 +6,7 @@
   environment.systemPackages = with pkgs; [
     yubikey-personalization
     yubikey-manager
-    yubikey-manager-qt
+    #yubikey-manager-qt
     yubikey-agent
     pinentry-qt
     gnupg
@@ -15,7 +15,7 @@
     pcsclite
   ];
   services.udev.packages = [
-    pkgs.yubikey-manager-udev
+    #pkgs.yubikey-manager-udev
     pkgs.yubikey-personalization
   ];
 
