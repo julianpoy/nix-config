@@ -22,6 +22,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/discord
     ../../mixins/element
     ../../mixins/firefox
+    ../../mixins/fish
     ../../mixins/flatpak
     ../../mixins/gimp
     ../../mixins/libreoffice
