@@ -13,6 +13,8 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ({ ... }: { home-manager.extraSpecialArgs = specialArgs; })
     (import ../../users/julian {stateVersion = "25.05";})
 
+    specialArgs.nix-flatpak.nixosModules.nix-flatpak
+
     ../../mixins/base
 
     ../../mixins/appimage

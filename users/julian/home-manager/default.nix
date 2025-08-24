@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./discord.nix
     ./ghostty.nix
     ./git.nix
     ./gtk.nix

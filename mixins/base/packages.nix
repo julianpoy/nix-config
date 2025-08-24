@@ -3,8 +3,9 @@
   pkgs,
   ...
 }: {
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # Flatpak is managed via nix-flatpak, but still requires the default flatpak to be enabled
+  services.flatpak.enable = true;
+
   environment.systemPackages = with pkgs; [
     vim
     wget

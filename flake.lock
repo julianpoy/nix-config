@@ -58,6 +58,22 @@
         "type": "github"
       }
     },
+    "nix-flatpak": {
+      "locked": {
+        "lastModified": 1739444422,
+        "narHash": "sha256-iAVVHi7X3kWORftY+LVbRiStRnQEob2TULWyjMS6dWg=",
+        "owner": "gmodena",
+        "repo": "nix-flatpak",
+        "rev": "5e54c3ca05a7c7d968ae1ddeabe01d2a9bc1e177",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gmodena",
+        "ref": "v0.6.0",
+        "repo": "nix-flatpak",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1755330281,
@@ -105,11 +121,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1756004271,
-        "narHash": "sha256-HmYFZn38yvFq/aF3jd3FChOgfmlhfHWJU6WlOSXclV4=",
+        "lastModified": 1756006434,
+        "narHash": "sha256-Wrojb+9VB02O+2CfpX5RKgr6f8MULYTB7I0LxCOEjsM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7334abf41154039a84b5ad66dc096d12b3b5a0c8",
+        "rev": "b47d19985a83d6e402f838bbd525377a86d17db3",
         "type": "github"
       },
       "original": {
@@ -123,6 +139,7 @@
         "disko": "disko",
         "dotfiles": "dotfiles",
         "home-manager-2505": "home-manager-2505",
+        "nix-flatpak": "nix-flatpak",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-2505": "nixpkgs-2505",

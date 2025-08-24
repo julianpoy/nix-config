@@ -4,6 +4,8 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak?ref=v0.6.0";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     nixpkgs-unstable.url = "github:NixOS/nixpkgs";
