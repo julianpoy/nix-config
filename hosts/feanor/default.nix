@@ -18,6 +18,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/base
 
     ../../mixins/appimage
+    ../../mixins/chrome
     ../../mixins/coder
     ../../mixins/cura
     ../../mixins/dbeaver
