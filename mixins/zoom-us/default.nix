@@ -1,7 +1,7 @@
 {
   config,
-  pkgs,
+  pkgsUnstable,
   ...
 }: {
-  environment.systemPackages = with pkgs; [zoom-us];
+  environment.systemPackages = with pkgsUnstable; [zoom-us];
 }

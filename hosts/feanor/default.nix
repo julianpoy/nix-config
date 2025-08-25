@@ -6,6 +6,8 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
+    ../../mixins/nixpkgsUnstable
+
     ./configuration.nix
     ./hardware-configuration.nix
 
