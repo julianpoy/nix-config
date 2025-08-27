@@ -6,6 +6,7 @@
 }: {
   imports = [
     ../firefox
+    ../logitech
     ../steam
     ../xone
   ];
