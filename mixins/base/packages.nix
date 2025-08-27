@@ -35,5 +35,6 @@
     ncdu
     powerline-fonts
     netcat
+    killall
   ];
 }

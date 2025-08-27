@@ -25,6 +25,7 @@
 
   programs.gnupg.agent = {
     enable = true;
+    enableExtraSocket = true;
     enableSSHSupport = true;
     pinentryPackage = pkgs.pinentry-qt;
   };

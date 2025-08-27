@@ -14,9 +14,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     (import ../../users/coop-admin {stateVersion = "25.05";})
 
     ../../mixins/base
-    ../../mixins/firefox
-    ../../mixins/steam
+    ../../mixins/coop
     ../../mixins/nvidia
-    ../../mixins/xone
   ];
 }

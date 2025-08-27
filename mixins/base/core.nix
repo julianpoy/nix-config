@@ -11,6 +11,9 @@
     "flakes"
   ];
 
+  # https://github.com/NixOS/nixpkgs/issues/159082
+  nix.settings.trusted-users = [ "@wheel" ];
+
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
