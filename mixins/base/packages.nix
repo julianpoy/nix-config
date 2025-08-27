@@ -36,5 +36,6 @@
     powerline-fonts
     netcat
     killall
+    ethtool
   ];
 }
