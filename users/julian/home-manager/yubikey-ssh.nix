@@ -11,12 +11,13 @@
   # '';
 
   home-manager.users.julian = lib.mkIf (config.programs.gnupg.agent.enable) {
+    # This and the shellInit breaks Coder. Will have to figure out why, but no yubikey-ssh until then
     # programs.ssh.startAgent = false;
 
     programs.gpg = {
       enable = true;
       publicKeys = [
-        {source = ../CFF09DBE5C7B348781FCBF3272DC5D65A37D62C2.asc; trust = 5;}
+        {source = ../72DC5D65A37D62C2.asc; trust = 5;}
       ];
     };
   };
