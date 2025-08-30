@@ -4,6 +4,10 @@
   lib,
   ...
 }: {
+  imports = [
+    ./home-manager
+  ];
+
   users.users.coopadmin = {
     isNormalUser = true;
     description = "Admin";

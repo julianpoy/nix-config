@@ -1,10 +1,10 @@
 {
   pkgs,
-  config,
   lib,
+  config,
   ...
 }: {
   imports = [
-    ../../home-manager-mixins/base
+    ../steam-perf
   ];
 }

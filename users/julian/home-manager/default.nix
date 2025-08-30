@@ -4,17 +4,19 @@
   lib,
   ...
 }: {
-  imports = [
-    ./discord.nix
-    ./ghostty.nix
-    ./git.nix
-    ./libvirt.nix
-    ./nvim.nix
-    ./packages.nix
-    ./shell.nix
-    ./tmux.nix
-    ./yubikey-ssh.nix
-  ];
+  home-manager.users.julian = {
+    imports = [
+      ../../home-manager-mixins/base
+      ../../home-manager-mixins/discord
+      ../../home-manager-mixins/ghostty-julianpoy
+      ../../home-manager-mixins/git-sensible
+      ../../home-manager-mixins/neovim-julianpoy
+      ../../home-manager-mixins/tmux-julianpoy
 
-  home-manager.backupFileExtension = "backup";
+      ./git.nix
+      ./libvirt.nix
+      ./shell.nix
+      ./yubikey-ssh.nix
+    ];
+  };
 }

@@ -2,7 +2,7 @@
   description = "Julian's NixOS configuration";
   inputs = {
     disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+    disko.inputs.nixpkgs.follows = "nixpkgs-2505";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=v0.6.0";
 
