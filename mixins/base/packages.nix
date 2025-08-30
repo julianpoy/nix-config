@@ -37,5 +37,6 @@
     netcat
     killall
     ethtool
+    iperf3
   ];
 }
