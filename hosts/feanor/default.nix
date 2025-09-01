@@ -32,6 +32,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/fish
     ../../mixins/flatpak
     ../../mixins/gimp
+    ../../mixins/latestkernel
     ../../mixins/libreoffice
     ../../mixins/logitech
     ../../mixins/neovim
