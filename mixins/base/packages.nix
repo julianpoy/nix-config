@@ -13,7 +13,6 @@
     tmux
     tmate
     htop
-    btop
     btop-rocm
     git
     nettools
