@@ -21,14 +21,18 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
 
     ../../mixins/appimage
     ../../mixins/coder
+    ../../mixins/darktable
     ../../mixins/discord
+    ../../mixins/docker
     ../../mixins/element
     ../../mixins/firefox
     ../../mixins/fish
     ../../mixins/flatpak
     ../../mixins/gimp
+    ../../mixins/kitty
     ../../mixins/latestkernel
     ../../mixins/libreoffice
+    ../../mixins/mozilla-vpn
     ../../mixins/neovim
     ../../mixins/nextcloud-desktop
     ../../mixins/obs
@@ -38,6 +42,5 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/vlc
     ../../mixins/xone
     ../../mixins/yubikey
-    #mozilla-vpn
   ];
 }
