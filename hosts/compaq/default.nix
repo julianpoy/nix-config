@@ -13,7 +13,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
 
     (import "${specialArgs.home-manager-2505}/nixos")
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
-    (import ../../users/julian {stateVersion = "25.05";})
+    (import ../../users/boushi {stateVersion = "25.05";})
 
     specialArgs.nix-flatpak.nixosModules.nix-flatpak
 
