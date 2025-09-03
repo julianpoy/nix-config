@@ -8,9 +8,9 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
+    nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager-2505.url = "github:nix-community/home-manager/release-25.05";
     home-manager-2505.inputs.nixpkgs.follows = "nixpkgs-2505";
 
