@@ -4,7 +4,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs-2505";
 
-    nix-flatpak.url = "github:gmodena/nix-flatpak?ref=v0.6.0";
+    nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
@@ -14,7 +14,7 @@
     home-manager-2505.url = "github:nix-community/home-manager/release-25.05";
     home-manager-2505.inputs.nixpkgs.follows = "nixpkgs-2505";
 
-    dotfiles.url = "github:julianpoy/dotfiles?rev=832d9b46e0ca71f7c58bf9f42da8da1b9d3080d8";
+    dotfiles.url = "github:julianpoy/dotfiles";
     dotfiles.flake = false;
   };
 
