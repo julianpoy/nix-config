@@ -25,8 +25,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/cura
     ../../mixins/dbeaver
     ../../mixins/discord
-    ../../mixins/dnscache
-    ../../mixins/dnstls
     ../../mixins/element
     ../../mixins/firefox
     ../../mixins/fish

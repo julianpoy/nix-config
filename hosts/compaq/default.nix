@@ -22,7 +22,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/appimage
     ../../mixins/coder
     ../../mixins/discord
-    ../../mixins/dnscache
     ../../mixins/element
     ../../mixins/firefox
     ../../mixins/fish
