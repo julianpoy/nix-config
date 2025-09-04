@@ -3,6 +3,10 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ../system/flatpak.nix
+  ];
+
   services.flatpak.packages = [
     {
       appId = "com.discordapp.Discord";

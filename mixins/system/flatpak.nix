@@ -1,9 +1,12 @@
 {
   config,
   pkgs,
+  specialArgs,
   ...
 }: {
-  imports = [];
+  imports = [
+    specialArgs.nix-flatpak.nixosModules.nix-flatpak
+  ];
 
   xdg.portal.enable = true;
   services.flatpak.enable = true;

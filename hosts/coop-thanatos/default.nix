@@ -10,11 +10,13 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ./hardware-configuration.nix
 
     (import "${specialArgs.home-manager-2505}/nixos")
+    ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/coop {stateVersion = "25.05";})
     (import ../../users/coop-admin {stateVersion = "25.05";})
 
-    ../../mixins/base
-    ../../mixins/coop
-    ../../mixins/nvidia
+    ../../mixins/shared/base
+    ../../mixins/shared/coop
+
+    ../../mixins/system/nvidia.nix
   ];
 }

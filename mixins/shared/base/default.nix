@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./nixpkgs-unstable.nix
     ./boot.nix
     ./core.nix
     ./desktop-core.nix

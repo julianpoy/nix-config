@@ -3,9 +3,6 @@
   pkgs,
   ...
 }: {
-  # Flatpak is managed via nix-flatpak, but still requires the default flatpak to be enabled
-  services.flatpak.enable = true;
-
   environment.systemPackages = with pkgs; [
     vim
     wget

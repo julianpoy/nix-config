@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ../node
+    ../cli/nodejs.nix
   ];
 
   programs.neovim.enable = true;

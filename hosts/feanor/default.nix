@@ -6,8 +6,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
-    ../../mixins/nixpkgsUnstable
-
     ./configuration.nix
     ./hardware-configuration.nix
 
@@ -15,34 +13,32 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/julian {stateVersion = "25.05";})
 
-    specialArgs.nix-flatpak.nixosModules.nix-flatpak
+    ../../mixins/shared/base
 
-    ../../mixins/base
-
-    ../../mixins/appimage
-    ../../mixins/chrome
-    ../../mixins/coder
-    ../../mixins/cura
-    ../../mixins/dbeaver
-    ../../mixins/discord
-    ../../mixins/element
-    ../../mixins/firefox
-    ../../mixins/fish
-    ../../mixins/flatpak
-    ../../mixins/gimp
-    ../../mixins/latestkernel
-    ../../mixins/libreoffice
-    ../../mixins/logitech
-    ../../mixins/neovim
-    ../../mixins/nextcloud-desktop
-    ../../mixins/obs
-    ../../mixins/openrgb
-    ../../mixins/slack
-    ../../mixins/spotify
-    ../../mixins/steam
-    ../../mixins/vlc
-    ../../mixins/xone
-    ../../mixins/yubikey
-    ../../mixins/zoom-us
+    ../../mixins/applications/cura.nix
+    ../../mixins/applications/dbeaver.nix
+    ../../mixins/applications/discord-flatpak.nix
+    ../../mixins/applications/element.nix
+    ../../mixins/applications/firefox.nix
+    ../../mixins/applications/gimp.nix
+    ../../mixins/applications/google-chrome.nix
+    ../../mixins/applications/libreoffice.nix
+    ../../mixins/applications/logitech.nix
+    ../../mixins/applications/nextcloud-desktop.nix
+    ../../mixins/applications/obs.nix
+    ../../mixins/applications/plex-desktop.nix
+    ../../mixins/applications/slack.nix
+    ../../mixins/applications/spotify.nix
+    ../../mixins/applications/steam.nix
+    ../../mixins/applications/vlc.nix
+    ../../mixins/applications/zoom-us.nix
+    ../../mixins/cli/coder.nix
+    ../../mixins/cli/fish.nix
+    ../../mixins/cli/neovim.nix
+    ../../mixins/system/appimage.nix
+    ../../mixins/system/flatpak.nix
+    ../../mixins/system/latest-kernel.nix
+    ../../mixins/system/xone.nix
+    ../../mixins/system/yubikey.nix
   ];
 }

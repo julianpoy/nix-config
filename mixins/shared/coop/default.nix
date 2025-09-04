@@ -5,10 +5,10 @@
   ...
 }: {
   imports = [
-    ../firefox
-    ../logitech
-    ../steam
-    ../xone
+    ../../applications/firefox.nix
+    ../../applications/logitech.nix
+    ../../applications/steam.nix
+    ../../system/xone.nix
   ];
 
   users.users.root.openssh.authorizedKeys.keys = [

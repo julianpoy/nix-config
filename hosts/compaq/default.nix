@@ -6,8 +6,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     specialArgs.disko.nixosModules.disko
     ./disk-config.nix
 
-    ../../mixins/nixpkgsUnstable
-
     ./configuration.nix
     ./hardware-configuration.nix
 
@@ -15,32 +13,31 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/boushi {stateVersion = "25.05";})
 
-    specialArgs.nix-flatpak.nixosModules.nix-flatpak
+    ../../mixins/shared/base
 
-    ../../mixins/base
-
-    ../../mixins/appimage
-    ../../mixins/coder
-    ../../mixins/darktable
-    ../../mixins/discord
-    ../../mixins/docker
-    ../../mixins/element
-    ../../mixins/firefox
-    ../../mixins/fish
-    ../../mixins/flatpak
-    ../../mixins/gimp
-    ../../mixins/kitty
-    ../../mixins/latestkernel
-    ../../mixins/libreoffice
-    ../../mixins/mozilla-vpn
-    ../../mixins/neovim
-    ../../mixins/nextcloud-desktop
-    ../../mixins/obs
-    ../../mixins/slack
-    ../../mixins/spotify
-    ../../mixins/steam
-    ../../mixins/vlc
-    ../../mixins/xone
-    ../../mixins/yubikey
+    ../../mixins/applications/darktable.nix
+    ../../mixins/applications/discord.nix
+    ../../mixins/applications/element.nix
+    ../../mixins/applications/firefox.nix
+    ../../mixins/applications/gimp.nix
+    ../../mixins/applications/kitty.nix
+    ../../mixins/applications/libreoffice.nix
+    ../../mixins/applications/mozilla-vpn.nix
+    ../../mixins/applications/nextcloud-desktop.nix
+    ../../mixins/applications/obs.nix
+    ../../mixins/applications/slack.nix
+    ../../mixins/applications/spotify.nix
+    ../../mixins/applications/steam.nix
+    ../../mixins/applications/vlc.nix
+    ../../mixins/cli/coder.nix
+    ../../mixins/cli/docker.nix
+    ../../mixins/cli/fish.nix
+    ../../mixins/cli/neovim.nix
+    ../../mixins/system/appimage.nix
+    ../../mixins/system/flatpak.nix
+    ../../mixins/system/latest-kernel.nix
+    ../../mixins/system/nixpkgs-unstable.nix
+    ../../mixins/system/xone.nix
+    ../../mixins/system/yubikey.nix
   ];
 }
