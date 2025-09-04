@@ -16,7 +16,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/shared/base
 
     ../../mixins/applications/darktable.nix
-    ../../mixins/applications/discord.nix
+    ../../mixins/applications/discord-flatpak.nix
     ../../mixins/applications/element.nix
     ../../mixins/applications/firefox.nix
     ../../mixins/applications/gimp.nix

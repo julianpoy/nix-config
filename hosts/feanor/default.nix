@@ -16,6 +16,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/shared/base
 
     ../../mixins/applications/cura.nix
+    ../../mixins/applications/darktable.nix
     ../../mixins/applications/dbeaver.nix
     ../../mixins/applications/discord-flatpak.nix
     ../../mixins/applications/element.nix
@@ -26,7 +27,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/applications/logitech.nix
     ../../mixins/applications/nextcloud-desktop.nix
     ../../mixins/applications/obs.nix
-    ../../mixins/applications/plex-desktop.nix
     ../../mixins/applications/slack.nix
     ../../mixins/applications/spotify.nix
     ../../mixins/applications/steam.nix
