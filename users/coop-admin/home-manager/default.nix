@@ -4,7 +4,9 @@
   lib,
   ...
 }: {
-  imports = [
-    ../../home-manager-mixins/base
-  ];
+  home-manager.users.coopadmin = {
+    imports = [
+      ../../home-manager-mixins/base
+    ];
+  };
 }
