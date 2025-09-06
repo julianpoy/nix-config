@@ -19,14 +19,13 @@
     pkgs.yubikey-personalization
   ];
 
-  hardware.gpgSmartcards.enable = true;
-  services.yubikey-agent.enable = true;
+  #hardware.gpgSmartcards.enable = true;
   services.pcscd.enable = true;
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableExtraSocket = true;
-    enableSSHSupport = true;
-    pinentryPackage = pkgs.pinentry-qt;
-  };
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableExtraSocket = true;
+  #   enableSSHSupport = true;
+  #   pinentryPackage = pkgs.pinentry-qt;
+  # };
 }

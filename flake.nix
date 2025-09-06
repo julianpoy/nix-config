@@ -1,9 +1,11 @@
 {
   description = "Julian's NixOS configuration";
   inputs = {
+    # Automatic disk management/partitioning
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs-2505";
 
+    # Automatic management of flatpak dependencies
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
