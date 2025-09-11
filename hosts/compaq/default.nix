@@ -15,4 +15,5 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
 
     ../../mixins/shared/base
     ../../mixins/shared/boush
+  ];
 }
