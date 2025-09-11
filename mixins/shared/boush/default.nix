@@ -10,11 +10,13 @@
     ../../applications/element.nix
     ../../applications/firefox.nix
     ../../applications/gimp.nix
+    ../../applications/gparted.nix
     ../../applications/kitty.nix
     ../../applications/libreoffice.nix
     ../../applications/mozilla-vpn.nix
     ../../applications/nextcloud-desktop.nix
     ../../applications/obs.nix
+    ../../applications/plex-desktop-flatpak.nix
     ../../applications/slack.nix
     ../../applications/spotify.nix
     ../../applications/steam.nix
