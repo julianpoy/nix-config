@@ -23,6 +23,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/applications/firefox.nix
     ../../mixins/applications/gimp.nix
     ../../mixins/applications/google-chrome.nix
+    ../../mixins/applications/kenku-fm.nix
     ../../mixins/applications/libreoffice.nix
     ../../mixins/applications/logitech.nix
     ../../mixins/applications/nextcloud-desktop.nix
