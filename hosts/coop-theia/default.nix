@@ -13,6 +13,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/coop {stateVersion = "25.05";})
     (import ../../users/coop-admin {stateVersion = "25.05";})
+    (import ../../users/coop-cmeyer {stateVersion = "25.05";})
 
     ../../mixins/shared/base
     ../../mixins/shared/coop
