@@ -2,7 +2,7 @@
 
 Flakes-based and using disko with nixos-anywhere.
 
-## New Machine
+## New Machine With NixOS-Anywhere
 
 1. Boot non-graphical nix
 2. Set password for nixos user (`passwd`)
@@ -10,6 +10,15 @@ Flakes-based and using disko with nixos-anywhere.
 4. Create new host in repo with hardware config from machine (`cat /etc/hardware-configuration.nix`) and disk configuration as desired
 5. Commit & push new host configuration
 6. [Run nixos-anywhere](#running-nixos-anywhere)
+
+## New Machine With Manual Install
+
+1. Boot non-graphical nix
+2. Generate and grab [hardware config](#hardware-config)
+3. Create new host in repo with hardware config from machine (`cat /etc/hardware-configuration.nix`) and disk configuration as desired
+4. Commit & push new host configuration
+5. [Run disko manually](#running-disko-manually)
+6. Run `sudo nixos-install --flake .#NAMEOFHOST`
 
 ### Hardware Config
 
