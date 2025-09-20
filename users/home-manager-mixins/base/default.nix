@@ -4,7 +4,5 @@
   config,
   ...
 }: {
-  imports = [
-    ../steam-perf
-  ];
+  imports = [];
 }
