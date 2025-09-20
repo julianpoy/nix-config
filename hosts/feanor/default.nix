@@ -38,6 +38,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/cli/neovim.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/flatpak.nix
+    ../../mixins/system/gaming-sec-limits.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/xone.nix
     ../../mixins/system/yubikey.nix

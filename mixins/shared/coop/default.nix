@@ -9,6 +9,7 @@
     ../../applications/logitech.nix
     ../../applications/steam.nix
     ../../cli/coder.nix
+    ../../system/gaming-sec-limits.nix
     ../../system/xone.nix
   ];
 
