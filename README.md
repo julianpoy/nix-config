@@ -18,7 +18,7 @@ Flakes-based and using disko with nixos-anywhere.
 3. Create new host in repo with hardware config from machine (`cat /etc/hardware-configuration.nix`) and disk configuration as desired
 4. Commit & push new host configuration
 5. [Run disko manually](#running-disko-manually)
-6. Run `sudo nixos-install --flake .#NAMEOFHOST`
+6. Run `sudo nixos-install --flake .#NAMEOFHOST` (note the # that must be present)
 
 ### Hardware Config
 
