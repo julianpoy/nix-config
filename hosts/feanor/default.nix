@@ -37,8 +37,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/cli/coder.nix
     ../../mixins/cli/fish.nix
     ../../mixins/cli/neovim.nix
-    ../../mixins/system/amddisablepowermanagement.nix
-    #../../mixins/system/amdvlk.nix
+    ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/flatpak.nix
     ../../mixins/system/latest-kernel.nix
