@@ -31,11 +31,14 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/applications/slack.nix
     ../../mixins/applications/spotify.nix
     ../../mixins/applications/steam.nix
+    ../../mixins/applications/steam-flatpak.nix
     ../../mixins/applications/vlc.nix
     ../../mixins/applications/zoom-us.nix
     ../../mixins/cli/coder.nix
     ../../mixins/cli/fish.nix
     ../../mixins/cli/neovim.nix
+    ../../mixins/system/amddisablepowermanagement.nix
+    #../../mixins/system/amdvlk.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/flatpak.nix
     ../../mixins/system/latest-kernel.nix
