@@ -1,7 +1,7 @@
 {
   config,
-  pkgs,
+  pkgsUnstable,
   ...
 }: {
-  environment.systemPackages = with pkgs; [coder];
+  environment.systemPackages = with pkgsUnstable; [coder];
 }
