@@ -39,6 +39,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/flatpak.nix
+    ../../mixins/system/fwupd.nix
     ../../mixins/system/latest-kernel.nix
   ];
 }
