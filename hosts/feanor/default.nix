@@ -36,6 +36,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/applications/zoom-us.nix
     ../../mixins/cli/coder.nix
     ../../mixins/cli/fish.nix
+    ../../mixins/cli/litra-rs.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
