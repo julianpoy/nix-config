@@ -3,13 +3,13 @@
 set -e
 
 wakeonlan ec:75:0c:83:48:5c
-nixos-rebuild switch --flake ..#coop-thanatos --target-host root@10.0.1.187
+ssh root@10.0.1.187 "nixos-rebuild switch --flake github:julianpoy/nix-config#coop-thanatos"
 
 wakeonlan ec:75:0c:83:47:d1
-nixos-rebuild switch --flake ..#coop-erinyes --target-host root@10.0.1.42
+ssh root@10.0.1.42 "nixos-rebuild switch --flake github:julianpoy/nix-config#coop-erinyes"
 
 wakeonlan 98:b7:85:22:25:9a
-nixos-rebuild switch --flake ..#coop-atlas --target-host root@10.0.3.24
+ssh root@10.0.3.24 "nixos-rebuild switch --flake github:julianpoy/nix-config#coop-atlas"
 
 wakeonlan ec:75:0c:83:48:95
-nixos-rebuild switch --flake ..#coop-theia --target-host root@10.0.1.244
+ssh root@10.0.1.244 "nixos-rebuild switch --flake github:julianpoy/nix-config#coop-theia"
