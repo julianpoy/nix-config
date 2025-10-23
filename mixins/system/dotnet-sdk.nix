@@ -14,6 +14,13 @@
     fontconfig
   ];
 
+  environment.variables = {
+    LD_LIBRARY_PATH = with pkgs; lib.makeLibraryPath [
+      # ...other libs
+      fontconfig
+    ];
+  }
+
   # Temporary while debugging
   programs.nix-ld.enable = true;
 }
