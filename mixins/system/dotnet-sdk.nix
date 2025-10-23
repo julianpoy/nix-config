@@ -19,7 +19,7 @@
       # ...other libs
       fontconfig
     ];
-  }
+  };
 
   # Temporary while debugging
   programs.nix-ld.enable = true;
