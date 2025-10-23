@@ -17,6 +17,7 @@
 
   programs.nix-ld.libraries = with pkgs; [
     glibc
+    gcc.cc.lib  # if C++ runtime needed
     fontconfig
     xorg.libX11
     xorg.libICE
