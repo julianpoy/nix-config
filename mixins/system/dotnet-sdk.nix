@@ -18,7 +18,6 @@
   programs.nix-ld = {
     enable = true;
     libraries = (pkgs.steam-run.args.multiPkgs pkgs) ++ [
-      pkgs.steam-run.fhsenv.args.multiPkgs pkgs
       glibc
       gcc.cc.lib
       fontconfig
