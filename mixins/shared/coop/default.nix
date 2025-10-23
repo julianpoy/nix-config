@@ -9,6 +9,7 @@
     ../../applications/logitech.nix
     ../../applications/steam.nix
     ../../cli/coder.nix
+    ../../cli/steam-run.nix
     ../../system/xone.nix
   ];
 
