@@ -18,6 +18,7 @@
   programs.nix-ld.libraries = with pkgs; [
     fontconfig
     xorg.libX11
+    xorg.libICE
   ];
   # environment.variables = {
   #   NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
