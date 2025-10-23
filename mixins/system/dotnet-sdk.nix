@@ -16,11 +16,8 @@
 
   environment.variables = {
     NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
-      pkgs.stdenv.cc.cc
-      pkgs.openssl
       pkgs.fontconfig
     ];
-    NIX_LD = lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker";
   };
 
   # Temporary while debugging
