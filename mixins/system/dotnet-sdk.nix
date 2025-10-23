@@ -10,5 +10,9 @@
   environment.systemPackages = with pkgs; [
     dotnet-runtime
     dotnet-sdk_9
+    xorg.libICE
   ];
+
+  # Temporary while debugging
+  programs.nix-ld.enable = true;
 }
