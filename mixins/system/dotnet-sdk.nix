@@ -20,6 +20,8 @@
     xorg.libX11
     xorg.libICE
     xorg.libSM
+    stdenv.cc.cc
+    libcap
   ];
   # environment.variables = {
   #   NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
