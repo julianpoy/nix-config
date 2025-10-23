@@ -27,6 +27,7 @@
 
     # Add 32-bit runtime support
     pkgsi686Linux.glibc
+    pkgsi686Linux.zlib
     pkgsi686Linux.gcc.cc.lib
     pkgsi686Linux.xorg.libX11
     pkgsi686Linux.xorg.libXext
