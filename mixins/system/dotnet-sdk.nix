@@ -23,7 +23,16 @@
     xorg.libSM
     stdenv.cc.cc
     libcap
-  ];
+  ] ++ (with pkgs.pkgsi686Linux; [
+    glibc
+    gcc.cc.lib  # if C++ runtime needed
+    fontconfig
+    xorg.libX11
+    xorg.libICE
+    xorg.libSM
+    libcap
+  ]);
+
   # environment.variables = {
   #   NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
   #     pkgs.fontconfig
