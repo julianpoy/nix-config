@@ -19,6 +19,7 @@
     fontconfig
     xorg.libX11
     xorg.libICE
+    xorg.libSM
   ];
   # environment.variables = {
   #   NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
