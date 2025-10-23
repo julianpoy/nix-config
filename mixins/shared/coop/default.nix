@@ -11,6 +11,7 @@
     ../../cli/coder.nix
     ../../cli/steam-run.nix
     ../../system/bluetooth.nix
+    ../../system/dotnet-runtime.nix
     ../../system/xone.nix
   ];
 
