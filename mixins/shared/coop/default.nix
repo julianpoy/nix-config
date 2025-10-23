@@ -10,6 +10,7 @@
     ../../applications/steam.nix
     ../../cli/coder.nix
     ../../cli/steam-run.nix
+    ../../system/bluetooth.nix
     ../../system/xone.nix
   ];
 
