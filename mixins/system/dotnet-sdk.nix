@@ -16,6 +16,7 @@
   ];
 
   programs.nix-ld.libraries = with pkgs; [
+    glibc
     fontconfig
     xorg.libX11
     xorg.libICE
