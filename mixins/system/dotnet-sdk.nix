@@ -11,6 +11,7 @@
     dotnet-runtime
     dotnet-sdk_9
     xorg.libICE
+    fontconfig
   ];
 
   # Temporary while debugging
