@@ -17,7 +17,24 @@
 
   programs.nix-ld = {
     enable = true;
-    libraries = pkgs.steam-run.args.multiPkgs pkgs;
+    libraries = (pkgs.steam-run.args.multiPkgs pkgs) ++ [
+      pkgs.steam-run.fhsenv.args.multiPkgs pkgs
+      glibc
+      gcc.cc.lib
+      fontconfig
+      xorg.libX11
+      xorg.libICE
+      xorg.libSM
+      stdenv.cc.cc
+      libcap
+
+      # Add 32-bit runtime support
+      pkgsi686Linux.glibc
+      pkgsi686Linux.zlib
+      pkgsi686Linux.gcc.cc.lib
+      pkgsi686Linux.xorg.libX11
+      pkgsi686Linux.xorg.libXext
+    ];
   };
 
   # programs.nix-ld.libraries = with pkgs; [
