@@ -42,6 +42,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/system/appimage.nix
     ../../mixins/system/flatpak.nix
     ../../mixins/system/latest-kernel.nix
+    ../../mixins/system/openrgb/default.nix
     ../../mixins/system/swap32.nix
     ../../mixins/system/xone.nix
     ../../mixins/system/yubikey.nix
