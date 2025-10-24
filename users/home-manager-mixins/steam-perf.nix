@@ -21,7 +21,6 @@
           THREADS=$(${pkgs.coreutils}/bin/nproc)
           STEAM_THREADS=$((THREADS - 4))
 
-          # Ensure minimum of 4 threads
           if [ $STEAM_THREADS -lt 4 ]; then
             STEAM_THREADS=4
           fi
