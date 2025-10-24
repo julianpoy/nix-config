@@ -4,9 +4,6 @@
   config,
   ...
 }: {
-  home.file.".steam/steam/steam_dev.cfg".text = ''
-  @fDownloadRateImprovementToAddAnotherConnection 1.1
-  '';
   systemd.user.services.steam-dev-flags = {
     description = "Configure Steam developer flags for download behavior";
     wantedBy = [ "default.target" ];
