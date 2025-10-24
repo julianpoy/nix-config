@@ -4,6 +4,7 @@
   config,
   ...
 }: {
+  systemd.user.startServices = true;
   systemd.user.services.steam-dev-flags = {
     description = "Configure Steam developer flags for download behavior";
     wantedBy = [ "default.target" ];
