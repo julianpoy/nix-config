@@ -6,6 +6,6 @@
   ...
 }: {
   imports = [
-    ../../home-manager-mixins/fish-julianpoy
+    ../../home-manager-mixins/fish-julianpoy.nix
   ];
 }
