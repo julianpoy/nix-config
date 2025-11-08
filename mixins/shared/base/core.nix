@@ -17,6 +17,7 @@
   networking.networkmanager.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
 
   # Select internationalisation propserties.
   i18n.defaultLocale = "en_US.UTF-8";
