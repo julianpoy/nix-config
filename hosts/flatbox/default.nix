@@ -22,13 +22,13 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/applications/jetbrains/datagrip.nix
     ../../mixins/applications/jetbrains/gateway.nix
     ../../mixins/applications/jetbrains/idea-ultimate.nix
+    ../../mixins/applications/opera-flatpak.nix
     ../../mixins/applications/vlc.nix
     ../../mixins/cli/coder.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix
-    ../../mixins/system/flatpak.nix
     ../../mixins/system/fwupd.nix
     ../../mixins/system/latest-kernel.nix
   ];

@@ -28,6 +28,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/applications/logitech.nix
     ../../mixins/applications/nextcloud-desktop.nix
     ../../mixins/applications/obs.nix
+    ../../mixins/applications/opera-flatpak.nix
     ../../mixins/applications/slack.nix
     ../../mixins/applications/spotify.nix
     ../../mixins/applications/steam.nix
@@ -39,7 +40,6 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/cli/neovim.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
-    ../../mixins/system/flatpak.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/openrgb/default.nix
     ../../mixins/system/swap32.nix
