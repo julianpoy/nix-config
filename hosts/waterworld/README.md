@@ -1,3 +1,3 @@
-# Feanor
+# Waterworld
 
-Personal machine
+Chris Gomez's shared gaming desktop

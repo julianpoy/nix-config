@@ -1,3 +1,3 @@
-# Feanor
+# Compaq
 
-Personal machine
+Chris Gomez's personal desktop

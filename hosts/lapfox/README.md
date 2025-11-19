@@ -1,3 +1,3 @@
-# Feanor
+# Lapfox
 
-Personal machine
+Chris Gomez's personal laptop

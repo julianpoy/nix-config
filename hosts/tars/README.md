@@ -1,3 +1,3 @@
-# Feanor
+# Tars
 
-Personal machine
+Michael Botsko's personal machine
