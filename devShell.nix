@@ -4,7 +4,7 @@
   ...
 }: {
   default = let
-    pkgs = import specialArgs.nixpkgs-2411 {
+    pkgs = import specialArgs.nixpkgs-2511 {
       system = "${system}";
     };
   in

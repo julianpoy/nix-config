@@ -3,7 +3,7 @@
   inputs = {
     # Automatic disk management/partitioning
     disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs-2505";
+    disko.inputs.nixpkgs.follows = "nixpkgs-2511";
 
     # Automatic management of flatpak dependencies
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=v0.6.0";
@@ -11,10 +11,11 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-2511.url = "github:NixOS/nixpkgs/staging-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager-2505.url = "github:nix-community/home-manager/release-25.05";
-    home-manager-2505.inputs.nixpkgs.follows = "nixpkgs-2505";
+    home-manager-2505.inputs.nixpkgs.follows = "nixpkgs-2511";
 
     dotfiles.url = "github:julianpoy/dotfiles";
     dotfiles.flake = false;
@@ -23,7 +24,6 @@
   outputs = inputs @ {
     self,
     disko,
-    nixpkgs,
     ...
   }: let
     inherit
