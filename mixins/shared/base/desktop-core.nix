@@ -39,7 +39,6 @@
 
     enableDefaultPackages = true;
     packages = with pkgs; [
-      ubuntu_font_family
       vazir-fonts
       noto-fonts
       noto-fonts-cjk-sans
