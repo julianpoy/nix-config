@@ -1,5 +1,5 @@
 {specialArgs, ...}:
-specialArgs.nixpkgs-2505.lib.nixosSystem {
+specialArgs.nixpkgs-2511.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
   modules = [
@@ -9,7 +9,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ./configuration.nix
     ./hardware-configuration.nix
 
-    (import "${specialArgs.home-manager-2505}/nixos")
+    (import "${specialArgs.home-manager-2511}/nixos")
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/chris {stateVersion = "25.05";})
 
@@ -32,6 +32,8 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/cli/coder.nix
     ../../mixins/cli/fish.nix
     ../../mixins/cli/neovim.nix
+    ../../mixins/system/audio/block-mic-autoadjust.nix
+    ../../mixins/system/audio/framework-25%-volume.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix
