@@ -52,7 +52,7 @@
       proggyfonts
 
       corefonts
-      vistafonts
+      vista-fonts
     ];
 
     fontconfig = {
