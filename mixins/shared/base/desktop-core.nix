@@ -39,6 +39,7 @@
 
     enableDefaultPackages = true;
     packages = with pkgs; [
+      ubuntu-classic
       vazir-fonts
       noto-fonts
       noto-fonts-cjk-sans
