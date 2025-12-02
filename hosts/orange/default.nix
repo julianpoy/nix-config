@@ -33,7 +33,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/cli/fish.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/system/audio/block-mic-autoadjust.nix
-    ../../mixins/system/audio/framework-25%-volume.nix
+    ../../mixins/system/audio/framework-25-percent-volume.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix
