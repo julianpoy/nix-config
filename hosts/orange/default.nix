@@ -37,6 +37,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix
     ../../mixins/system/fwupd.nix
+    ../../mixins/system/swap32.nix
     ../../mixins/system/latest-kernel.nix
   ];
 }
