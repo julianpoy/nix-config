@@ -14,6 +14,7 @@
     ../../system/bluetooth.nix
     ../../system/dotnet-sdk-9.nix
     ../../system/latest-kernel.nix
+    ../../system/memtest86.nix
     ../../system/swap16.nix
     ../../system/xone.nix
   ];
