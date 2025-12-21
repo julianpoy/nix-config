@@ -20,7 +20,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/cli/neovim.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/libvirt-kvm.nix
-    ../../mixins/system/nvidia.nix
+    ../../mixins/system/nvidia-for-server.nix
     ../../mixins/system/swap64.nix
   ];
 }
