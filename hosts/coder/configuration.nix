@@ -43,9 +43,8 @@
       Type = "exec";
       User = "coder";
       EnvironmentFile = "/run/coder/agent-env"; # Written by cloud-init
-      ExecStartPre = "${pkgs.bash}/bin/bash -c 'if ! ${pkgs.util-linux}/bin/mountpoint -q /home; then echo FATAL: /home is not mounted; exit 1; fi'";
       ExecStart = "/run/wrappers/bin/coder agent";
-      Restart = "on-failure";
+      Restart = "always";
       RestartSec = "5s";
     };
   };
