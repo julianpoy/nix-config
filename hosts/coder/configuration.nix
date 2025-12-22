@@ -5,7 +5,7 @@
   ...
 }: {
   # We initialize hostname via the script
-  # networking.hostName = "coder-uninitialized";
+  networking.hostName = "";
 
   boot.loader.grub.device = "/dev/vda";
   boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "nokaslr" ];
@@ -49,6 +49,14 @@
       Type = "exec";
       User = "coder";
       EnvironmentFile = "/run/coder/agent-env"; # Written by cloud-init
+      ExecStartPre = ''
+        ${pkgs.bash}/bin/bash -c '
+          if ! mountpoint -q /home; then
+            echo "FATAL: /home is not mounted! This would cause data loss."
+            exit 1
+          fi
+        '
+      '';
       ExecStart = "/run/wrappers/bin/coder agent";
       Restart = "on-failure";
       RestartSec = "5s";
