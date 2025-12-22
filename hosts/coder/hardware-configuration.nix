@@ -20,21 +20,23 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/vda";
+    device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
+    autoResize = true;
   };
 
-  # Only mount /home on vdb when NOT building a disk image
-  fileSystems."/home" = lib.mkIf (!config.system.build ? qcow2) {
+  fileSystems."/home" = {
     device = "/dev/vdb";
     fsType = "ext4";
-    options = [ "defaults" ];
+    autoFormat = true;
+    # Only mount /home on vdb when it exists (not building the base image)
+    options = [ "defaults" "nofail" "x-systemd.device-timeout=1" ];
   };
 
   swapDevices = [ ];
 
   networking.useDHCP = lib.mkDefault true;
-  networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
+  #networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";

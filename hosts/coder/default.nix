@@ -11,7 +11,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/coder {stateVersion = "25.05";})
 
-    ../../mixins/shared/base
+    ../../mixins/shared/base/default.headless.nix
 
     ../../mixins/cli/coder.nix
     ../../mixins/cli/fish.nix

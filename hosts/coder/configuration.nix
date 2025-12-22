@@ -8,11 +8,14 @@
   # networking.hostName = "coder-uninitialized";
 
   boot.loader.grub.device = "/dev/vda";
-  boot.kernelParams = [ "console=ttyS0,115200" ];
+  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "nokaslr" ];
+  boot.growPartition = true;
 
-  fileSystems."/" = {
-    autoResize = true;
-  };
+  # We need home to be created after filesystems are setup
+  users.users.coder.createHome = lib.mkForce false;
+  systemd.tmpfiles.rules = [
+    "d /home/coder 0755 coder users - -"
+  ];
 
   services.cloud-init = {
     enable = true;
@@ -32,12 +35,16 @@
     group = "root";
   };
 
-  systemd.services.coder-agent = lib.mkIf (!config.system.build ? qcow2) {
+  systemd.services.coder-agent = {
     description = "Coder Agent";
     wantedBy = [ "multi-user.target" ];
     after = [ "network-online.target" "cloud-final.service" ];
     wants = [ "network-online.target" ];
-    
+
+    unitConfig = {
+      ConditionPathExists = "/run/coder/agent-env"; # If we don't conditional on /run/coder/env this will try to run during image build
+    };
+
     serviceConfig = {
       Type = "exec";
       User = "coder";
