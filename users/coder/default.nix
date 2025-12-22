@@ -8,6 +8,13 @@
     ./home-manager
   ];
 
+  security.sudo.extraRules = [
+    {
+      users = [ "coder" ];
+      options = [ "NOPASSWD" ];
+    }
+  ];
+
   users.users.coder = {
     isNormalUser = true;
     description = "Coder";

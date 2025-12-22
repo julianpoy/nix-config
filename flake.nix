@@ -50,11 +50,22 @@
         })
         systems);
 
-    nixosConfigurations = listToAttrs (map (name: {
-      inherit name;
-      value = import ./hosts/${name}/default.nix {
-        specialArgs = inputs;
+    nixosConfigurations = 
+      (listToAttrs (map (name: {
+        inherit name;
+        value = import ./hosts/${name}/default.nix {
+          specialArgs = inputs;
+        };
+      }) (attrNames (readDir ./hosts))))
+      // {
+        build-coder-prebaked-qcow = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = inputs;
+          modules = [
+            ./hosts/coder/default.nix
+            ./hosts/coder/qcow.nix
+          ];
+        };
       };
-    }) (attrNames (readDir ./hosts)));
   };
 }
