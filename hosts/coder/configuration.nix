@@ -11,12 +11,6 @@
   boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "nokaslr" ];
   boot.growPartition = true;
 
-  # We need home to be created after filesystems are setup
-  users.users.coder.createHome = lib.mkForce false;
-  systemd.tmpfiles.rules = [
-    "d /home/coder 0755 coder users - -"
-  ];
-
   services.cloud-init = {
     enable = true;
     settings = {
@@ -49,14 +43,7 @@
       Type = "exec";
       User = "coder";
       EnvironmentFile = "/run/coder/agent-env"; # Written by cloud-init
-      ExecStartPre = ''
-        ${pkgs.bash}/bin/bash -c '
-          if ! mountpoint -q /home; then
-            echo "FATAL: /home is not mounted! This would cause data loss."
-            exit 1
-          fi
-        '
-      '';
+      ExecStartPre = "${pkgs.bash}/bin/bash -c 'if ! ${pkgs.util-linux}/bin/mountpoint -q /home; then echo FATAL: /home is not mounted; exit 1; fi'";
       ExecStart = "/run/wrappers/bin/coder agent";
       Restart = "on-failure";
       RestartSec = "5s";

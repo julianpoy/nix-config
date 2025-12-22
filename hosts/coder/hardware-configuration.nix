@@ -28,7 +28,6 @@
   fileSystems."/home" = {
     device = "/dev/vdb";
     fsType = "ext4";
-    autoFormat = true;
     # Only mount /home on vdb when it exists (not building the base image)
     options = [ "defaults" "nofail" "x-systemd.device-timeout=1" ];
   };
