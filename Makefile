@@ -28,3 +28,5 @@ nixos.test: check-target
 nixos.upgrade: check-target update nixos.build
 	sudo nixos-rebuild switch --flake .#${TARGET}
 
+coder.init:
+	sudo nixos-rebuild switch --flake .#coder
