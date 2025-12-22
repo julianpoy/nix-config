@@ -24,7 +24,8 @@
     fsType = "ext4";
   };
 
-  fileSystems."/home" = {
+  # Only mount /home on vdb when NOT building a disk image
+  fileSystems."/home" = lib.mkIf (!config.system.build ? qcow2) {
     device = "/dev/vdb";
     fsType = "ext4";
     options = [ "defaults" ];

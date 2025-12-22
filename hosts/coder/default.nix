@@ -5,6 +5,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
   modules = [
     ./configuration.nix
     ./hardware-configuration.nix
+    ./qcow.nix
 
     (import "${specialArgs.home-manager-2511}/nixos")
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})

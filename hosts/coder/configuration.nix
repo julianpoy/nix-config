@@ -8,7 +8,7 @@
   # networking.hostName = "coder-uninitialized";
 
   boot.loader.grub.device = "/dev/vda";
-  boot.kernelParams = [ "console=ttyS0" ];
+  boot.kernelParams = [ "console=ttyS0,115200" ];
 
   fileSystems."/" = {
     autoResize = true;
@@ -32,7 +32,7 @@
     group = "root";
   };
 
-  systemd.services.coder-agent = {
+  systemd.services.coder-agent = lib.mkIf (!config.system.build ? qcow2) {
     description = "Coder Agent";
     wantedBy = [ "multi-user.target" ];
     after = [ "network-online.target" "cloud-final.service" ];

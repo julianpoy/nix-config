@@ -11,7 +11,12 @@
   security.sudo.extraRules = [
     {
       users = [ "coder" ];
-      options = [ "NOPASSWD" ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];  # ✅ options goes inside commands
+        }
+      ];
     }
   ];
 
