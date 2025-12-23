@@ -10,5 +10,8 @@
       runAsRoot = true;
       swtpm.enable = true;
     };
+    onShutdown = "suspend";
+    onBoot = "start";
+    parallelShutdown = 3;
   };
 }
