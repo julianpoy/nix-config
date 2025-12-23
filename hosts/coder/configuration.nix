@@ -35,6 +35,7 @@
     after = [ "network-online.target" "cloud-final.service" ];
     wants = [ "network-online.target" ];
 
+    restartIfChanged = false;
     unitConfig = {
       ConditionPathExists = "/run/coder/agent-env"; # If we don't conditional on /run/coder/env this will try to run during image build
     };
