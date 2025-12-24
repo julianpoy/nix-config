@@ -40,6 +40,11 @@
       ConditionPathExists = "/run/coder/agent-env"; # If we don't conditional on /run/coder/env this will try to run during image build
     };
 
+    path = with pkgs; [
+      git
+      bash
+    ];
+
     serviceConfig = {
       Type = "exec";
       User = "coder";
