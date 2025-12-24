@@ -25,7 +25,7 @@
     autoResize = true;
   };
 
-  fileSystems."/home" = {
+  fileSystems."/home/coder/workspace" = {
     device = "/dev/vdb";
     fsType = "ext4";
     # Only mount /home on vdb when it exists (not building the base image)

@@ -20,6 +20,7 @@
     }
   ];
 
+  users.users.coder.shell = pkgs.fish;
   users.users.coder = {
     isNormalUser = true;
     description = "Coder";
