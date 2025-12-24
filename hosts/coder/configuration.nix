@@ -43,7 +43,7 @@
     path = with pkgs; [
       git
       bash
-      awk
+      gawk
     ];
 
     serviceConfig = {
