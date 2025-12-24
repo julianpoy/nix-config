@@ -14,6 +14,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/shared/base/default.headless.nix
 
     ../../mixins/cli/coder.nix
+    ../../mixins/cli/docker.nix
     ../../mixins/cli/fish.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/system/max-user-watches-524288.nix
