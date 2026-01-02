@@ -10,6 +10,7 @@
     ../../applications/steam.nix
     ../../applications/steam-mod-extrapackages.nix
     ../../cli/coder.nix
+    ../../cli/fish.nix
     ../../cli/steam-run.nix
     ../../system/bluetooth.nix
     ../../system/dotnet-sdk-9.nix
