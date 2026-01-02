@@ -14,7 +14,7 @@
     extraGroups = [
       "networkmanager"
     ];
-    hashedPassword = "$y$j9T$ELyit6oRGbOFCCzGaBNie1$jW2VMNPEtW1HMF3yaDuqhjMbDI6m7dYFUNwjY/NoduD";
+    hashedPassword = "$y$j9T$IRmy2nUbLvXQwM0awhDJ3.$UOi/ASKBVxBp8GDsmBFhyC4jNjABkHjVH/ZBGhTQMH2";
   };
 
   users.users.coop-cmeyer.openssh.authorizedKeys.keys = [
