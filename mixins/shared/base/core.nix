@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  users.mutableUsers = false;
+
   # Disable legacy command-not-found since we're using flakes
   programs.command-not-found.enable = false;
 
