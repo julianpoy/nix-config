@@ -40,6 +40,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/cli/neovim.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
+    ../../mixins/system/bluetooth.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/openrgb/default.nix
     ../../mixins/system/swap32.nix
