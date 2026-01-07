@@ -21,6 +21,5 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/libvirt-kvm.nix
     ../../mixins/system/nvidia-for-server.nix
-    ../../mixins/system/swap16.nix
   ];
 }
