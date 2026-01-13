@@ -39,5 +39,6 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/system/fwupd.nix
     ../../mixins/system/swap32.nix
     ../../mixins/system/latest-kernel.nix
+    ../../mixins/system/yubikey.nix
   ];
 }
