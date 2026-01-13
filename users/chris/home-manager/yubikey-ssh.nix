@@ -66,6 +66,6 @@
     # defaultCacheTtlSsh = 6*h;
     # maxCacheTtl = 100*y; # effectively unlimited
     # maxCacheTtlSsh = 100*y; # effectively unlimited
-    sshKeys = [ "685D10B3B97E4C0765DD7AB7A334C60FC505D6BB" ];
+    sshKeys = [ "DD6D03C1ED38ABBFF7EFF455C39711287EBFEF30" ];
   };
 }
