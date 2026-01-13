@@ -13,6 +13,7 @@
 
       ./git.nix
       ./shell.nix
+      ./yubikey-ssh.nix
     ];
   };
 }
