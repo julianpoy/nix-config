@@ -11,7 +11,6 @@
     ../../applications/firefox.nix
     ../../applications/gimp.nix
     ../../applications/gparted.nix
-    ../../applications/kitty.nix
     ../../applications/kenku-fm.nix
     ../../applications/libreoffice.nix
     ../../applications/mozilla-vpn.nix
