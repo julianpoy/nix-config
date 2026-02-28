@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ../../applications/atlauncher.nix
+    ../../applications/prismlauncher.nix
     ../../applications/darktable.nix
     ../../applications/discord-flatpak.nix
     ../../applications/element.nix
