@@ -32,6 +32,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/applications/slack.nix
     ../../mixins/applications/spotify.nix
     ../../mixins/applications/steam.nix
+    ../../mixins/applications/vintagestory.nix
     ../../mixins/applications/vlc.nix
     ../../mixins/applications/zoom-us.nix
     ../../mixins/cli/coder.nix
