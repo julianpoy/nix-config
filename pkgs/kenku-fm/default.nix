@@ -31,8 +31,8 @@ pkgs.stdenv.mkDerivation {
   version = "1.6.2-experimental";
 
   src = pkgs.fetchzip {
-    url = "https://github.com/owlbear-rodeo/kenku-fm/releases/download/v1.6.2-experimental/Kenku.FM-linux-x64-1.6.2-experimental.zip";
-    sha256 = "sha256-gFP6A6ixCGJ/xifVKrj/A68/Io89pfefx+hFqkphwqI=";
+    url = "https://github.com/owlbear-rodeo/kenku-fm/releases/download/v1.6.7-experimental/Kenku.FM-linux-x64-1.6.7-experimental.zip";
+    sha256 = "sha256-zEoPs6FGchOj1FPejEUEBeC9+w7cHCbOSbR1hLxUbD4=";
     stripRoot = false;
   };
 
