@@ -28,7 +28,7 @@ let
 in
 pkgs.stdenv.mkDerivation {
   pname = "kenku-fm";
-  version = "1.6.2-experimental";
+  version = "1.6.7-experimental";
 
   src = pkgs.fetchzip {
     url = "https://github.com/owlbear-rodeo/kenku-fm/releases/download/v1.6.7-experimental/Kenku.FM-linux-x64-1.6.7-experimental.zip";
