@@ -7,6 +7,8 @@
   imports = [
     ../../applications/firefox.nix
     ../../applications/logitech.nix
+    ../../applications/oversteer.nix
+    ../../applications/prismlauncher.nix
     ../../applications/steam.nix
     ../../applications/steam-mod-extrapackages.nix
     ../../cli/coder.nix
