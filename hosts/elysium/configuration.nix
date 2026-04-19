@@ -9,7 +9,7 @@
   networking.useDHCP = false;
   networking.bridges = {
     br0 = {
-      interfaces = [ "enp14s0" ];
+      interfaces = [ "enp17s0" ];
     };
   };
   networking.interfaces.br0.useDHCP = true;
