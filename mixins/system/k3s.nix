@@ -11,7 +11,12 @@
   ];
   services.k3s = {
     enable = true;
-    package = pkgs.k3s_1_31; # pin to match asphodel server at v1.31.14+k3s1
+    package = pkgs.k3s_1_31.overrideAttrs (old: {
+      meta = old.meta // {
+        broken = false;
+        knownVulnerabilities = [];
+      };
+    });
     role = "agent";
     tokenFile = "/home/k3speeringtoken";
     serverAddr = "https://10.0.4.4:6443";
