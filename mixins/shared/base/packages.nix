@@ -15,7 +15,6 @@
     nettools
     gnumake
     alejandra
-    python311
     zip
     unzip
     jq
