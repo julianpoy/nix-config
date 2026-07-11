@@ -11,7 +11,7 @@
     extraConfig = {
       commit.gpgsign = true;
       tag.gpgSign = true;
-      user.signingkey = "0x72DC5D65A37D62C2";
+      user.signingkey = "0xE251C9AAC164166E";
       gpg.format = "openpgp";
     };
   };

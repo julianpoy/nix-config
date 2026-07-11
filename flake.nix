@@ -3,7 +3,7 @@
   inputs = {
     # Automatic disk management/partitioning
     disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs-2511";
+    disko.inputs.nixpkgs.follows = "nixpkgs-2605";
 
     # Automatic management of flatpak dependencies
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=v0.6.0";
@@ -12,12 +12,15 @@
 
     nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-2605.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager-2505.url = "github:nix-community/home-manager/release-25.05";
     home-manager-2505.inputs.nixpkgs.follows = "nixpkgs-2505";
     home-manager-2511.url = "github:nix-community/home-manager/release-25.11";
     home-manager-2511.inputs.nixpkgs.follows = "nixpkgs-2511";
+    home-manager-2605.url = "github:nix-community/home-manager/release-26.05";
+    home-manager-2605.inputs.nixpkgs.follows = "nixpkgs-2605";
 
     dotfiles.url = "github:julianpoy/dotfiles";
     dotfiles.flake = false;
