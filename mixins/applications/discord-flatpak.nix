@@ -12,7 +12,7 @@
       appId = "com.discordapp.Discord";
       origin = "flathub";
       # Use `flatpak remote-info --log flathub com.discordapp.Discord | less` to find latest commit.
-      commit = "b797446477949e5e15c979a016f37a75fa3274bedb0cb8072e1d5f12217a4d41";
+      commit = "5b964188452f75cb254797d2a7373fd0dada7dd4eae0f7a427f598e99d9113ec";
     }
   ];
 

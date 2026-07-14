@@ -12,7 +12,7 @@
       appId = "tv.plex.PlexDesktop";
       origin = "flathub";
       # Use `flatpak remote-info --log flathub tv.plex.PlexDesktop | less` to find latest commit.
-      commit = "8844286e7468f5edc3df2306bc68dcf2082515d61c706129816d5ccbbeed8c17";
+      commit = "c9c8758410b59a1c285e66b1143a9a4f17d67b0e8943e34cd292268c57e24a59";
     }
   ];
 
