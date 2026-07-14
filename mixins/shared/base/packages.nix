@@ -14,6 +14,7 @@
     git
     nettools
     gnumake
+    python3
     alejandra
     zip
     unzip
