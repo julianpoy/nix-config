@@ -38,6 +38,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/applications/vlc.nix
     ../../mixins/applications/zoom-us.nix
     ../../mixins/cli/coder.nix
+    ../../mixins/cli/claude-code.nix
     ../../mixins/cli/doctl.nix
     ../../mixins/cli/fish.nix
     ../../mixins/cli/kubectl.nix
