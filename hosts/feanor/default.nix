@@ -1,5 +1,5 @@
 {specialArgs, ...}:
-specialArgs.nixpkgs-2511.lib.nixosSystem {
+specialArgs.nixpkgs-2605.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
   modules = [
@@ -9,7 +9,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ./configuration.nix
     ./hardware-configuration.nix
 
-    (import "${specialArgs.home-manager-2511}/nixos")
+    (import "${specialArgs.home-manager-2605}/nixos")
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/julian {stateVersion = "25.05";})
 
@@ -38,7 +38,9 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/applications/vlc.nix
     ../../mixins/applications/zoom-us.nix
     ../../mixins/cli/coder.nix
+    ../../mixins/cli/doctl.nix
     ../../mixins/cli/fish.nix
+    ../../mixins/cli/kubectl.nix
     ../../mixins/cli/litra-rs.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/system/amdtuning.nix
