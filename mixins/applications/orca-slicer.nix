@@ -1,7 +1,7 @@
 {
   config,
-  pkgs,
+  pkgsUnstable,
   ...
 }: {
-  environment.systemPackages = with pkgs; [orca-slicer];
+  environment.systemPackages = with pkgsUnstable; [orca-slicer];
 }
