@@ -6,7 +6,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs-2605";
 
     # Automatic management of flatpak dependencies
-    nix-flatpak.url = "github:gmodena/nix-flatpak?ref=v0.6.0";
+    nix-flatpak.url = "github:gmodena/nix-flatpak?ref=v0.7.0";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
