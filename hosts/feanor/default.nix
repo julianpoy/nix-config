@@ -47,6 +47,8 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix
+    ../../mixins/system/fwupd.nix
+    ../../mixins/system/garbage-collection.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/openrgb/default.nix
     ../../mixins/system/swap32.nix
