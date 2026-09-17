@@ -41,7 +41,9 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 sudo nixos-install --flake .#NAME_OF_HOST
 ```
 
-8. If you didn't commit your hardware-configuration.nix before, make sure to generate the hardware configuration again and commit it.
+8. Boot into your new install!
+9. If you didn't commit your hardware-configuration.nix before, make sure to generate the hardware configuration again and commit it.
+10. (optional) I like to keep a copy of the nix config in `~/nix-config` on the system. I recommend you do too - it's not there anymore since we only did that in the ephemeral install.
 
 ### Creating a new host
 
@@ -60,17 +62,66 @@ If either of those two are not true, _you must change it_. I recommend using `ls
 
 4. Change the software that will be installed by editing the section "Customize below this line!" within `default.nix`.
 
-## Other Stuff
+## A reference guide
 
-### Updating Config Later
+### Updating Config
 
-After setting a machine up with flake support run either:
+(possible precursor step is `git pull`, should you desire it)
+
+1. Make a change in the repo on your system (did you put it in `~/nix-config`?)
+2. Run `git add`
+3. Run `make nixos.switch`
+4. Commit and push your changes
+
+### Updating to a New Major NixOS Version
+
+You'll most likely only need to change two lines of your config, like this:
+
+https://github.com/julianpoy/nix-config/pull/13/changes
+
+Then follow the steps in [updating config](#updating-config). If you see any errors, then you'll need to do more work depending - most upgrades are pretty much no work though.
+
+### Running New Software Without Installing
+
+This could be temporary or not so temporary, but you can always run nix packages without installing them.
+
+Find the package you want to run at https://search.nixos.org/packages
 
 ```
-nixos-rebuild switch --flake github:julianpoy/nix-config
+nix run nixpkgs#PACKAGENAME
 ```
 
-or
+If you want to provide args to the program in question:
+
+```
+nix run nixpkgs#PACKAGENAME -- arg1 arg2
+```
+
+If you're trying to run something unfree and you're seeing the unfree error:
+
+```
+NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#PACKAGENAME
+```
+
+### Adding New Software to Your System
+
+If the software already exists somewhere in the `mixins` folder then:
+
+1. Open your `hosts/YOUR_HOST/default.nix`.
+2. Add it (alphabetically please) to the list of software in your mixins list.
+3. Follow the steps in [updating config](#updating-config).
+
+If the software does not exist somewhere in the `mixins` folder then:
+
+1. Go to https://search.nixos.org/packages and find the name of the package you wish to install.
+2. Decide if you need the version attached to your machine's version or whether you need the latest unstable.
+3. Add a new mixin to the appropriate folder by copying an existing mixin. I recommend copying something simple like `mixins/applications/dbeaver.nix`.
+4. If you want the unstable version of it, change `pkgs` to `pkgsUnstable`.
+5. Open your `hosts/YOUR_HOST/default.nix`.
+6. Add it (alphabetically please) to the list of software in your mixins list.
+7. Follow the steps in [updating config](#updating-config).
+
+### Updating Config on a Remote System
 
 ```
 nixos-rebuild switch --flake github:julianpoy/nix-config --target-host "root@IP_ADDRESS"
