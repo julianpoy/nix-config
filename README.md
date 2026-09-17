@@ -50,8 +50,8 @@ Creating a new host is pretty easy:
 1. Copy an existing host folder in the `hosts` directory. I recommend copying `feanor`.
 2. Change `networking.hostName` within `configuration.nix` for that host to match what you named the host folder.
 3. Review `disk-config.nix`. You do not need to change it so long as the following are true:
-  1. You have a single NVME SSD in your system
-  2. You wish to use the entirety of that NVME SSD, and are okay with it being wiped
+  * You have a single NVME SSD in your system
+  * You wish to use the entirety of that NVME SSD, and are okay with it being wiped
 If either of those two are not true, _you must change it_. I recommend using `lsblk -d -o NAME,SIZE,ID-LINK` to figure out the UUID of the disk you wish to use. Edit `/dev/nvme0n1` in the `disk-config.nix` to be `/dev/disk/by-id/YOUR-DISKS-ID-LINK`.
 4. Change the software that will be installed by editing the section "Customize below this line!" within `default.nix`.
 
