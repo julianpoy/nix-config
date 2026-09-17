@@ -1,0 +1,59 @@
+{specialArgs, ...}:
+specialArgs.nixpkgs-2605.lib.nixosSystem {
+  inherit specialArgs;
+  system = "x86_64-linux";
+  modules = [
+    specialArgs.disko.nixosModules.disko
+    ./disk-config.nix
+
+    ./configuration.nix
+    ./hardware-configuration.nix
+
+    (import "${specialArgs.home-manager-2605}/nixos")
+    ({...}: {home-manager.extraSpecialArgs = specialArgs;})
+    (import ../../users/julian {stateVersion = "26.05";})
+
+    ../../mixins/shared/base
+
+    # Customize below this line!
+    ../../mixins/applications/blender.nix
+    ../../mixins/applications/cura.nix
+    ../../mixins/applications/darktable.nix
+    ../../mixins/applications/dbeaver.nix
+    ../../mixins/applications/discord-flatpak.nix
+    ../../mixins/applications/element.nix
+    ../../mixins/applications/firefox.nix
+    ../../mixins/applications/gimp.nix
+    ../../mixins/applications/google-chrome.nix
+    ../../mixins/applications/kenku-fm.nix
+    ../../mixins/applications/libreoffice.nix
+    ../../mixins/applications/logitech.nix
+    ../../mixins/applications/nextcloud-desktop.nix
+    ../../mixins/applications/obs.nix
+    ../../mixins/applications/opera-flatpak.nix
+    ../../mixins/applications/orca-slicer.nix
+    ../../mixins/applications/slack.nix
+    ../../mixins/applications/spotify.nix
+    ../../mixins/applications/steam.nix
+    ../../mixins/applications/vintagestory.nix
+    ../../mixins/applications/vlc.nix
+    ../../mixins/applications/zoom-us.nix
+    ../../mixins/cli/coder.nix
+    ../../mixins/cli/claude-code.nix
+    ../../mixins/cli/doctl.nix
+    ../../mixins/cli/fish.nix
+    ../../mixins/cli/kubectl.nix
+    ../../mixins/cli/litra-rs.nix
+    ../../mixins/cli/neovim.nix
+    ../../mixins/system/amdtuning.nix
+    ../../mixins/system/appimage.nix
+    ../../mixins/system/bluetooth.nix
+    ../../mixins/system/fwupd.nix
+    ../../mixins/system/garbage-collection.nix
+    ../../mixins/system/latest-kernel.nix
+    ../../mixins/system/openrgb/default.nix
+    ../../mixins/system/swap32.nix
+    ../../mixins/system/xone.nix
+    ../../mixins/system/yubikey.nix
+  ];
+}
