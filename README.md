@@ -1,44 +1,47 @@
 # nix-config
 
-Flakes-based and using disko with nixos-anywhere.
+Flakes-based and using disko.
 
-## New Machine With NixOS-Anywhere
+## New Machine
 
-1. Boot non-graphical nix
-2. Set password for nixos user (`passwd`)
-3. Generate and grab [hardware config](#hardware-config)
-4. Create new host in repo with hardware config from machine (`cat /etc/hardware-configuration.nix`) and disk configuration as desired
-5. Commit & push new host configuration
-6. [Run nixos-anywhere](#running-nixos-anywhere)
+1. [Create a new host](#creating-a-new-host) and push the new host to the hosted repo
+2. Flash [NixOS](https://nixos.org/download/) to a flash drive and boot
+3. Clone the repo on the target machine
 
-## New Machine With Manual Install
+```
+git clone https://github.com/julianpoy/nix-config ~/nix-config
+```
 
-1. Boot non-graphical nix
-2. Generate and grab [hardware config](#hardware-config)
-3. Create new host in repo with hardware config from machine (`cat /etc/hardware-configuration.nix`) and disk configuration as desired
-4. Commit & push new host configuration
-5. [Run disko manually](#running-disko-manually)
-6. Run `sudo nixos-install --flake .#NAMEOFHOST` (note the # that must be present)
-
-### Hardware Config
-
-To generate a hardware config for a machine that will end up using disko (gets deposited as /tmp/hardware-configuration.nix).
+4. Generate your hardware config on the target machine
 
 ```
 nixos-generate-config --no-filesystems --root /mnt --dir /tmp
 ```
 
-Copy that into the associated host directory within this repo.
-
-### Running Nixos-Anywhere
-
-Note: This is destructive and will wipe all data with disko.
-
-Run the command below (from another machine on the network, or using `localhost`) with the HOST you'd like (HOST must match one of the items in the `hosts/` directory here.
+5. Copy the generated hardware config to the repo
 
 ```
-nix run github:nix-community/nixos-anywhere --extra-experimental-features nix-command --extra-experimental-features flakes -- --flake github:julianpoy/nix-config#HOST --target-host nixos@IP_ADDRESS
+cp /tmp/hardware-configuration.nix ~/nix-config/hosts/NAME_OF_HOST/hardware-configuration.nix
 ```
+
+You'll want to commit that generated hardware-configuration.nix to the repo, but doing that now is kinda annoying because you don't have SSH/auth setup.
+You can always re-generate the hardware-configuration.nix later (it'll be the same) once you've booted into the system for the first time and then commit it.
+
+6. Run disko to format the storage
+
+```
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /path/to/disk-config.nix
+```
+
+7. Install NixOS
+
+(note the # that must be present)
+
+```
+sudo nixos-install --flake .#NAME_OF_HOST
+```
+
+8. If you didn't commit your hardware-configuration.nix before, make sure to generate the hardware configuration again and commit it.
 
 ## Other Stuff
 
@@ -54,12 +57,6 @@ or
 
 ```
 nixos-rebuild switch --flake github:julianpoy/nix-config --target-host "root@IP_ADDRESS"
-```
-
-### Running Disko Manually
-
-```
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /path/to/disk-config.nix
 ```
 
 ### REPL
