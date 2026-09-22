@@ -11,8 +11,9 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
 
     (import "${specialArgs.home-manager-2605}/nixos")
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
+    (import ../../users/brisa {stateVersion = "25.05";})
     (import ../../users/bardsko {stateVersion = "25.05";})
-
+    
     "${specialArgs.nixos-hardware}/framework/13-inch/7040-amd"
 
     ../../mixins/shared/base
@@ -26,7 +27,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/applications/logitech.nix
     ../../mixins/applications/mozilla-vpn.nix
     ../../mixins/applications/nextcloud-desktop.nix
-    ../../mixins/applications/obs.nix
+    ../..mixins/applications/obs.nix
     ../../mixins/applications/slack.nix
     ../../mixins/applications/spotify.nix
     ../../mixins/applications/steam.nix
