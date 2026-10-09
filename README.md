@@ -30,7 +30,7 @@ You can always re-generate the hardware-configuration.nix later (it'll be the sa
 6. Run disko to format the storage
 
 ```
-sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount /path/to/disk-config.nix
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ~/nix-config/hosts/NAME_OF_HOST/disk-config.nix
 ```
 
 7. Install NixOS
