@@ -27,7 +27,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/applications/logitech.nix
     ../../mixins/applications/mozilla-vpn.nix
     ../../mixins/applications/nextcloud-desktop.nix
-    ../..mixins/applications/obs.nix
+    ../../mixins/applications/obs.nix
     ../../mixins/applications/slack.nix
     ../../mixins/applications/spotify.nix
     ../../mixins/applications/steam.nix
