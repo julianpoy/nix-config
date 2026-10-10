@@ -1,0 +1,56 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  hosts:
+    name: enumerate hosts
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.enumerate.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - id: enumerate
+        shell: bash
+        run: |
+          set -euo pipefail
+          names=()
+          for dir in hosts/*/; do
+            name="${dir#hosts/}"
+            names+=("${name%/}")
+          done
+
+          matrix="$(printf '%s\n' "${names[@]}" | jq -Rsc 'split("\n") | map(select(length > 0))')"
+          echo "Evaluating: $matrix"
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  eval:
+    name: eval ${{ matrix.host }}
+    needs: hosts
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: ${{ fromJSON(needs.hosts.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+
+      - name: Evaluate ${{ matrix.host }}
+        run: |
+          nix eval --raw \
+            ".#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel.drvPath"
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+
+      - run: nix develop -c alejandra --check .
