@@ -11,7 +11,7 @@
 
   programs.git = {
     enable = true;
-    extraConfig.core.editor = (lib.mkIf (config.programs.neovim.enable) "nvim");
+    extraConfig.core.editor = lib.mkIf (config.programs.neovim.enable) "nvim";
     extraConfig.init.defaultBranch = "main";
     lfs.enable = true;
 

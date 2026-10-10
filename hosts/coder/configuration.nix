@@ -9,13 +9,13 @@
 
   boot.loader.grub.device = "/dev/vda";
   boot.loader.timeout = 0;
-  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "nokaslr" ];
+  boot.kernelParams = ["console=ttyS0,115200n8" "console=tty0" "nokaslr"];
   boot.growPartition = true;
 
   services.cloud-init = {
     enable = true;
     settings = {
-      datasource_list = [ "NoCloud" ];
+      datasource_list = ["NoCloud"];
       cloud_init_modules = [
         "write-files"
         "users-groups"
@@ -32,9 +32,9 @@
 
   systemd.services.coder-agent = {
     description = "Coder Agent";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" "cloud-final.service" ];
-    wants = [ "network-online.target" ];
+    wantedBy = ["multi-user.target"];
+    after = ["network-online.target" "cloud-final.service"];
+    wants = ["network-online.target"];
 
     restartIfChanged = false;
     unitConfig = {

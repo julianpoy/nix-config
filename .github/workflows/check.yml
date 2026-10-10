@@ -48,7 +48,6 @@ jobs:
   lint:
     name: lint
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v7
       - uses: cachix/install-nix-action@v31

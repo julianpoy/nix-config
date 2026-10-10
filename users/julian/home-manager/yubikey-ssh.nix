@@ -8,7 +8,10 @@
   programs.gpg = {
     enable = true;
     publicKeys = [
-      {source = ../72DC5D65A37D62C2.asc; trust = 5;}
+      {
+        source = ../72DC5D65A37D62C2.asc;
+        trust = 5;
+      }
     ];
     scdaemonSettings = {
       disable-ccid = true;
@@ -66,6 +69,6 @@
     # defaultCacheTtlSsh = 6*h;
     # maxCacheTtl = 100*y; # effectively unlimited
     # maxCacheTtlSsh = 100*y; # effectively unlimited
-    sshKeys = [ "685D10B3B97E4C0765DD7AB7A334C60FC505D6BB" ];
+    sshKeys = ["685D10B3B97E4C0765DD7AB7A334C60FC505D6BB"];
   };
 }

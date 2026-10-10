@@ -12,10 +12,12 @@
   services.k3s = {
     enable = true;
     package = pkgs.k3s_1_31.overrideAttrs (old: {
-      meta = old.meta // {
-        broken = false;
-        knownVulnerabilities = [];
-      };
+      meta =
+        old.meta
+        // {
+          broken = false;
+          knownVulnerabilities = [];
+        };
     });
     role = "agent";
     tokenFile = "/home/k3speeringtoken";

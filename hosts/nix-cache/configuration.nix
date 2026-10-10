@@ -8,7 +8,7 @@
 
   boot.loader.grub.device = "/dev/vda";
   boot.loader.timeout = 0;
-  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "nokaslr" ];
+  boot.kernelParams = ["console=ttyS0,115200n8" "console=tty0" "nokaslr"];
   boot.growPartition = true;
 
   services.openssh.permitRootLogin = "yes";

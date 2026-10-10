@@ -14,7 +14,7 @@
           }
         ];
         actions = {
-          quirks = [ "block-source-volume" ];
+          quirks = ["block-source-volume"];
         };
       }
     ];

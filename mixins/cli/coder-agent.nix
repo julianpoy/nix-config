@@ -8,12 +8,11 @@
   environment.systemPackages = with pkgsUnstable; [coder];
   systemd.services.coder-agent = {
     description = "Coder agent";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" ];
+    wantedBy = ["multi-user.target"];
+    after = ["network-online.target"];
     serviceConfig = {
       ExecStart = "${pkgs.coder}/bin/coder agent start --token \"$CODER_AGENT_TOKEN\"";
       Restart = "always";
     };
   };
 }
-

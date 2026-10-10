@@ -14,7 +14,7 @@
   ];
 
   # https://github.com/NixOS/nixpkgs/issues/159082
-  nix.settings.trusted-users = [ "@wheel" ];
+  nix.settings.trusted-users = ["@wheel"];
 
   networking.networkmanager.enable = true;
 

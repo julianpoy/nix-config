@@ -1,5 +1,4 @@
 # This config file is meant for use on headless server-based nvidia systems
-
 {
   config,
   lib,

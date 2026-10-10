@@ -1,4 +1,4 @@
-{ pkgs }:
+{pkgs}:
 pkgs.rustPlatform.buildRustPackage {
   pname = "litra-rs";
   version = "2.4.0";
@@ -12,7 +12,6 @@ pkgs.rustPlatform.buildRustPackage {
 
   cargoHash = "sha256-LAYDUn63C45+xig7ldnbv+5kHjnGOTVv2pRmXJpLaXk=";
 
-  buildInputs = [ pkgs.udev ];
-  nativeBuildInputs = [ pkgs.pkg-config ];
+  buildInputs = [pkgs.udev];
+  nativeBuildInputs = [pkgs.pkg-config];
 }
-

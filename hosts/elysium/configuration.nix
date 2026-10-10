@@ -32,9 +32,9 @@
 
     networks."40-br0" = {
       matchConfig.Name = "br0";
-      address = [ "10.0.4.6/24" ];
-      routes = [{ Gateway = "10.0.4.1"; }]; # your gateway
-      networkConfig.DNS = [ "10.0.4.1" ];
+      address = ["10.0.4.6/24"];
+      routes = [{Gateway = "10.0.4.1";}]; # your gateway
+      networkConfig.DNS = ["10.0.4.1"];
       linkConfig.RequiredForOnline = "routable";
     };
   };
