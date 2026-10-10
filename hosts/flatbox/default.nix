@@ -26,6 +26,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/applications/vlc.nix
     ../../mixins/cli/coder.nix
     ../../mixins/cli/neovim.nix
+    ../../mixins/system/audio/framework-13-7040-amd.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix

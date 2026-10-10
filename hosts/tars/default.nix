@@ -37,6 +37,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/cli/fish.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/cli/yt-dlp.nix
+    ../../mixins/system/audio/framework-13-7040-amd.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix

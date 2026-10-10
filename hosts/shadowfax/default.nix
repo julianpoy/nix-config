@@ -42,6 +42,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/cli/litra-rs.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/system/appimage.nix
+    ../../mixins/system/audio/framework-13-intel-core-ultra-series3
     ../../mixins/system/fwupd.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/swap32.nix
