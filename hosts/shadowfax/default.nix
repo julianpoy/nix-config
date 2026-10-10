@@ -1,5 +1,5 @@
 {specialArgs, ...}:
-specialArgs.nixpkgs-2511.lib.nixosSystem {
+specialArgs.nixpkgs-2605.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
   modules = [
@@ -9,7 +9,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ./configuration.nix
     ./hardware-configuration.nix
 
-    (import "${specialArgs.home-manager-2511}/nixos")
+    (import "${specialArgs.home-manager-2605}/nixos")
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/julian {stateVersion = "25.05";})
 
@@ -20,7 +20,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/applications/cura.nix
     ../../mixins/applications/darktable.nix
     ../../mixins/applications/dbeaver.nix
-    ../../mixins/applications/discord-flatpak.nix
+    ../../mixins/applications/discord.nix
     ../../mixins/applications/element.nix
     ../../mixins/applications/firefox.nix
     ../../mixins/applications/gimp.nix
@@ -36,14 +36,16 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/applications/steam.nix
     ../../mixins/applications/vlc.nix
     ../../mixins/applications/zoom-us.nix
+    ../../mixins/cli/claude-code.nix
     ../../mixins/cli/coder.nix
     ../../mixins/cli/fish.nix
     ../../mixins/cli/litra-rs.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
+    ../../mixins/system/fprintd.nix
+    ../../mixins/system/fwupd.nix
     ../../mixins/system/latest-kernel.nix
-    ../../mixins/system/openrgb/default.nix
     ../../mixins/system/swap32.nix
     ../../mixins/system/xone.nix
     ../../mixins/system/yubikey.nix
