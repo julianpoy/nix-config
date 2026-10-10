@@ -12,7 +12,7 @@
       appId = "com.opera.Opera";
       origin = "flathub";
       # Use `flatpak remote-info --log flathub com.opera.Opera | less` to find latest commit.
-      commit = "e3408d309006f358336caac7b7f84d459b74ae71d25875af31f875c60c650a10";
+      commit = "9121e7e933239a15ce25bdad7bb4cf81d3cc849df7f72f4e7b12a558755d1e07";
     }
   ];
 
