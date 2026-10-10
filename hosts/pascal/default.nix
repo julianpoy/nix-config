@@ -13,7 +13,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/brisa {stateVersion = "25.05";})
     (import ../../users/bardsko {stateVersion = "25.05";})
-    
+
     "${specialArgs.nixos-hardware}/framework/13-inch/7040-amd"
 
     ../../mixins/shared/base
