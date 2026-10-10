@@ -13,7 +13,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/julian {stateVersion = "25.05";})
 
-    "${specialArgs.nixos-hardware}/lenovo/thinkpad/x1/13th-gen"
+    "${specialArgs.nixos-hardware}/framework/13-inch/intel-core-ultra-series3"
 
     ../../mixins/shared/base
 
@@ -41,12 +41,11 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/cli/fish.nix
     ../../mixins/cli/litra-rs.nix
     ../../mixins/cli/neovim.nix
-    ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
-    ../../mixins/system/fprintd.nix
     ../../mixins/system/fwupd.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/swap32.nix
+    ../../mixins/system/thermald.nix
     ../../mixins/system/xone.nix
     ../../mixins/system/yubikey.nix
   ];
