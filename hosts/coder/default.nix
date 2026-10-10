@@ -1,5 +1,5 @@
 {specialArgs, ...}:
-specialArgs.nixpkgs-2511.lib.nixosSystem {
+specialArgs.nixpkgs-2605.lib.nixosSystem {
   inherit specialArgs;
   system = "x86_64-linux";
   modules = [
@@ -7,7 +7,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ./hardware-configuration.nix
     ./qcow.nix
 
-    (import "${specialArgs.home-manager-2511}/nixos")
+    (import "${specialArgs.home-manager-2605}/nixos")
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/coder {stateVersion = "25.05";})
 
