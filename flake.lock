@@ -23,11 +23,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1777239727,
-        "narHash": "sha256-IE6U1uuIDD1beBZ2AYMZBT3Y7g5eFgD8JEnPN49F/As=",
+        "lastModified": 1791683817,
+        "narHash": "sha256-0aHpkZti4L1g9hil7KUh4GttnsSyJKOmrdxIVB3JcGg=",
         "owner": "julianpoy",
         "repo": "dotfiles",
-        "rev": "b12ac8473a01f48fc6bb847d3dc203e621364d0f",
+        "rev": "aae81722d0683a5ecd9a35a62b2bd1e3bd46bf1f",
         "type": "github"
       },
       "original": {
