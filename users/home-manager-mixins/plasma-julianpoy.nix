@@ -17,6 +17,8 @@
 
       workspace.lookAndFeel = "org.kde.breezedark.desktop";
 
+      krunner.position = "center";
+
       input.keyboard.options = ["caps:escape"];
 
       input.touchpads = [
@@ -67,6 +69,15 @@
             padding = 4;
             tiles = ''{"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}'';
           };
+        };
+
+        krunnerrc = {
+          Plugins = {
+            krunner_katesessionsEnabled = false;
+            krunner_konsoleprofilesEnabled = false;
+            krunner_sessionsEnabled = false;
+          };
+          "Plugins/Favorites".plugins = "krunner_sessions,krunner_powerdevil,krunner_services,krunner_systemsettings";
         };
 
         kwalletrc.Wallet."First Use" = false;
