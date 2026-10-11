@@ -30,6 +30,7 @@ specialArgs.nixpkgs-2505.lib.nixosSystem {
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix
+    ../../mixins/system/fingerprint.nix
     ../../mixins/system/fwupd.nix
     ../../mixins/system/latest-kernel.nix
   ];

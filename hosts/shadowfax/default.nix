@@ -45,6 +45,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/system/audio/framework-13-intel-core-ultra-series3
     ../../mixins/system/audio/noise-suppression.nix
     ../../mixins/system/dictation.nix
+    ../../mixins/system/fingerprint.nix
     ../../mixins/system/fwupd.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/swap32.nix
