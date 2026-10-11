@@ -22,6 +22,10 @@
     home-manager-2605.url = "github:nix-community/home-manager/release-26.05";
     home-manager-2605.inputs.nixpkgs.follows = "nixpkgs-2605";
 
+    plasma-manager.url = "github:nix-community/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs-2605";
+    plasma-manager.inputs.home-manager.follows = "home-manager-2605";
+
     dotfiles.url = "github:julianpoy/dotfiles";
     dotfiles.flake = false;
   };
