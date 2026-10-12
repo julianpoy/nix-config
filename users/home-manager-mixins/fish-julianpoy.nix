@@ -23,6 +23,9 @@
   # Different from the global fish enablement -- this is just for home-manager
   programs.fish.enable = true;
   programs.fish.functions = {
+    fish_user_key_bindings = ''
+      bind ctrl-h backward-kill-word
+    '';
     setupstream = ''
       git branch --set-upstream-to=origin/(git rev-parse --abbrev-ref HEAD) (git rev-parse --abbrev-ref HEAD)
     '';
