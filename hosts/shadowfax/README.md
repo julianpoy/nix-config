@@ -1,3 +1,3 @@
-# Feanor
+# Shadowfax
 
-Personal laptop (X1 Carbon Gen 13)
+Personal laptop (Framework Laptop 13 Pro, Intel Core Ultra Series 3)

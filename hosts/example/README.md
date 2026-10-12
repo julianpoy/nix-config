@@ -1,3 +1,3 @@
-# Feanor
+# Example
 
-Personal machine
+Please write your name + machine model here

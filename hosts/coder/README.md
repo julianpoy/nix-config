@@ -1,3 +1,3 @@
-# Feanor
+# Coder
 
-Personal machine
+Coder workspace VM image (qcow)
