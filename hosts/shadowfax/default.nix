@@ -44,7 +44,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/system/ambient-keyboard-backlight.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix
-    ../../mixins/system/audio/framework-13-intel-core-ultra-series3
+    ../../mixins/system/audio/framework-13-intel-core-ultra-series3-dolby-custom
     ../../mixins/system/audio/noise-suppression.nix
     ../../mixins/system/dictation.nix
     ../../mixins/system/fingerprint.nix
