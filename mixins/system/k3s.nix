@@ -11,14 +11,7 @@
   ];
   services.k3s = {
     enable = true;
-    package = pkgs.k3s_1_31.overrideAttrs (old: {
-      meta =
-        old.meta
-        // {
-          broken = false;
-          knownVulnerabilities = [];
-        };
-    });
+    package = pkgs.k3s_1_33;
     role = "agent";
     tokenFile = "/home/k3speeringtoken";
     serverAddr = "https://10.0.4.4:6443";
