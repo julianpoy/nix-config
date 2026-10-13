@@ -1,0 +1,31 @@
+keys:
+  users:
+    - &julian CFF09DBE5C7B348781FCBF3272DC5D65A37D62C2
+    - &chris CEC66FAF8302D55991EF46F5490DEEFCA7F3BE86
+  hosts:
+    - &shadowfax age1vqu54lumr0e9sz655x73qjnt3gkxg5sh2x5cjfkh6kzh6m8wxcgqaesk7t
+
+creation_rules:
+  - path_regex: secrets/shared/.*
+    key_groups:
+      - pgp:
+          - *julian
+        age:
+          - *shadowfax
+
+  - path_regex: secrets/infra/.*
+    key_groups:
+      - pgp:
+          - *julian
+
+  - path_regex: secrets/julian/.*
+    key_groups:
+      - pgp:
+          - *julian
+        age:
+          - *shadowfax
+
+  - path_regex: secrets/chris/.*
+    key_groups:
+      - pgp:
+          - *chris

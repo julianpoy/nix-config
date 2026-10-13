@@ -26,6 +26,9 @@
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs-2605";
     plasma-manager.inputs.home-manager.follows = "home-manager-2605";
 
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs-2605";
+
     dotfiles.url = "github:julianpoy/dotfiles";
     dotfiles.flake = false;
   };

@@ -33,7 +33,9 @@ You can always re-generate the hardware-configuration.nix later (it'll be the sa
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ~/nix-config/hosts/NAME_OF_HOST/disk-config.nix
 ```
 
-7. Install NixOS
+7. (optional) If the host needs secrets, pre-generate its SSH host key and copy it into `/mnt/etc/ssh` (see [secrets/README.md](secrets/README.md#adding-a-host))
+
+8. Install NixOS
 
 (note the # that must be present)
 
@@ -41,9 +43,9 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 sudo nixos-install --flake .#NAME_OF_HOST
 ```
 
-8. Boot into your new install!
-9. If you didn't commit your hardware-configuration.nix before, make sure to generate the hardware configuration again and commit it.
-10. (optional) I like to keep a copy of the nix config in `~/nix-config` on the system. I recommend you do too - it's not there anymore since we only did that in the ephemeral install.
+9. Boot into your new install!
+10. If you didn't commit your hardware-configuration.nix before, make sure to generate the hardware configuration again and commit it.
+11. (optional) I like to keep a copy of the nix config in `~/nix-config` on the system. I recommend you do too - it's not there anymore since we only did that in the ephemeral install.
 
 ### Creating a new host
 

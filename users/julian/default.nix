@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./home-manager
+    ./mount-asphodel.nix
   ];
 
   users.users.julian = {

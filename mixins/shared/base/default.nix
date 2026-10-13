@@ -11,5 +11,6 @@
     ./desktop-kde.nix
     ./networking.nix
     ./packages.nix
+    ./sops.nix
   ];
 }

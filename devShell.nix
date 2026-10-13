@@ -16,6 +16,9 @@
         git
         gnumake
         alejandra
+        sops
+        ssh-to-age
+        gnupg
       ];
     };
 }
