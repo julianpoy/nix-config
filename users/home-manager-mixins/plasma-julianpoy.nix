@@ -30,7 +30,8 @@
           tapToClick = false;
           disableWhileTyping = false;
           rightClickMethod = "twoFingers";
-          scrollSpeed = 0.5;
+          pointerSpeed = -0.1;
+          scrollSpeed = 0.3;
         }
       ];
 
@@ -38,6 +39,7 @@
         {
           location = "bottom";
           floating = true;
+          hiding = "autohide";
           height = 46;
           widgets = [
             "org.kde.plasma.kickoff"
@@ -45,13 +47,33 @@
             "org.kde.plasma.icontasks"
             "org.kde.plasma.marginsseparator"
             {
-              systemTray.items.configs.battery.showPercentage = true;
+              systemTray.items.shown = ["org.kde.plasma.battery"];
             }
             "org.kde.plasma.digitalclock"
             "org.kde.plasma.showdesktop"
           ];
         }
       ];
+
+      startup.desktopScript.battery-percentage = {
+        priority = 3;
+        runAlways = true;
+        text = ''
+          panels().forEach((panel) => {
+            panel.widgets("org.kde.plasma.systemtray").forEach((tray) => {
+              const items = ["Applets", String(tray.id), "Applets"];
+              panel.currentConfigGroup = items;
+              String(panel.configGroups).split(",").forEach((id) => {
+                panel.currentConfigGroup = items.concat([id]);
+                if (panel.readConfig("plugin") != "org.kde.plasma.battery") return;
+                panel.currentConfigGroup = items.concat([id, "Configuration", "General"]);
+                panel.writeConfig("showPercentage", true);
+              });
+            });
+            panel.reloadConfig();
+          });
+        '';
+      };
 
       configFile = {
         kwinrc = {
