@@ -4,6 +4,7 @@ keys:
     - &chris CEC66FAF8302D55991EF46F5490DEEFCA7F3BE86
   hosts:
     - &shadowfax age1vqu54lumr0e9sz655x73qjnt3gkxg5sh2x5cjfkh6kzh6m8wxcgqaesk7t
+    - &feanor age1ajv0r79sfmh0vl4q3p6gtzg309863hpv2vw68qlrnkc49g0wm3ws2nmewx
 
 creation_rules:
   - path_regex: secrets/shared/.*
@@ -12,6 +13,7 @@ creation_rules:
           - *julian
         age:
           - *shadowfax
+          - *feanor
 
   - path_regex: secrets/infra/.*
     key_groups:
@@ -24,6 +26,7 @@ creation_rules:
           - *julian
         age:
           - *shadowfax
+          - *feanor
 
   - path_regex: secrets/chris/.*
     key_groups:
