@@ -54,6 +54,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/system/swap32.nix
     ../../mixins/system/thermald.nix
     ../../mixins/system/thunderbolt.nix
+    ../../mixins/system/ucsi-resume-retry
     ../../mixins/system/xone.nix
     ../../mixins/system/yubikey.nix
   ];
