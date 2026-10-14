@@ -103,6 +103,11 @@
         };
 
         kwalletrc.Wallet."First Use" = false;
+
+        "powerdevil.notifyrc" = {
+          "Event\\/pluggedin".Action = "";
+          "Event\\/unplugged".Action = "";
+        };
       };
     };
   };
