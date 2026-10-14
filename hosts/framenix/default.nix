@@ -30,6 +30,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/applications/steam.nix
     ../../mixins/applications/vlc.nix
     ../../mixins/cli/fish.nix
+    ../../mixins/cli/rclone.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/bluetooth.nix
     ../../mixins/system/fwupd.nix
