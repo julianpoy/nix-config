@@ -19,6 +19,17 @@
 
       krunner.position = "center";
 
+      shortcuts.kwin = {
+        "Walk Through Windows" = "Alt+Tab";
+        "Walk Through Windows (Reverse)" = "Alt+Shift+Tab";
+        "Walk Through Windows Alternative" = "Meta+Tab";
+        "Walk Through Windows Alternative (Reverse)" = "Meta+Shift+Tab";
+        "Walk Through Windows of Current Application" = "Alt+`";
+        "Walk Through Windows of Current Application (Reverse)" = "Alt+~";
+        "Walk Through Windows of Current Application Alternative" = "Meta+`";
+        "Walk Through Windows of Current Application Alternative (Reverse)" = "Meta+~";
+      };
+
       input.keyboard.options = ["caps:escape"];
 
       input.touchpads = [
