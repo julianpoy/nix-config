@@ -19,6 +19,8 @@
 
       krunner.position = "center";
 
+      session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+
       shortcuts.kwin = {
         "Walk Through Windows" = "Alt+Tab";
         "Walk Through Windows (Reverse)" = "Alt+Shift+Tab";
