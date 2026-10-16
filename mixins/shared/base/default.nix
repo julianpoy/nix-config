@@ -9,6 +9,7 @@
     ./core.nix
     ./desktop-core.nix
     ./desktop-kde.nix
+    ./home-manager-backups.nix
     ./networking.nix
     ./packages.nix
     ./sops.nix

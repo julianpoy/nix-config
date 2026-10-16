@@ -7,6 +7,7 @@
   home-manager.users.julian = {
     imports = [
       ../../home-manager-mixins/base.nix
+      ../../home-manager-mixins/claude-julianpoy.nix
       ../../home-manager-mixins/ghostty-julianpoy.nix
       ../../home-manager-mixins/neovim-julianpoy.nix
       ../../home-manager-mixins/plasma-julianpoy.nix
