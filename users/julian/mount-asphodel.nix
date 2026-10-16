@@ -9,6 +9,7 @@
     "gid=users"
     "file_mode=0644"
     "dir_mode=0755"
+    "echo_interval=15"
     "noauto"
     "nofail"
     "_netdev"
