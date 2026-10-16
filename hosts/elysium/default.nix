@@ -18,6 +18,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
 
     ../../mixins/cli/fish.nix
     ../../mixins/cli/neovim.nix
+    ../../mixins/system/amd-pstate-balance-power.nix
     ../../mixins/system/k3s-nvidia.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/libvirt-kvm.nix
