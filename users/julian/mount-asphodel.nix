@@ -14,7 +14,6 @@
     "nofail"
     "_netdev"
     "x-systemd.automount"
-    "x-systemd.idle-timeout=300"
     "x-systemd.mount-timeout=10s"
   ];
 in {
