@@ -27,6 +27,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/applications/google-chrome.nix
     ../../mixins/applications/kenku-fm.nix
     ../../mixins/applications/libreoffice.nix
+    ../../mixins/applications/lightcraft.nix
     ../../mixins/applications/logitech.nix
     ../../mixins/applications/nextcloud-desktop.nix
     ../../mixins/applications/obs.nix

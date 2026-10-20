@@ -29,6 +29,9 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs-2605";
 
+    lightcraft.url = "github:storytold/lightcraft?ref=v0.9.1";
+    lightcraft.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     dotfiles.url = "github:julianpoy/dotfiles";
     dotfiles.flake = false;
   };
