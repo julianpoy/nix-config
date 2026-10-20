@@ -44,6 +44,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/cli/neovim.nix
     ../../mixins/system/ambient-keyboard-backlight.nix
     ../../mixins/system/appimage.nix
+    ../../mixins/system/attic-push.nix
     ../../mixins/system/bluetooth.nix
     ../../mixins/system/audio/framework-13-intel-core-ultra-series3-dolby-custom
     ../../mixins/system/audio/noise-suppression.nix

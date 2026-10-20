@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./binary-cache.nix
     ./boot.nix
     ./core.nix
     ./home-manager-backups.nix

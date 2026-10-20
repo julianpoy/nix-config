@@ -14,6 +14,7 @@
     ../../cli/coder.nix
     ../../cli/fish.nix
     ../../cli/steam-run.nix
+    ../../system/attic-push.nix
     ../../system/bluetooth.nix
     ../../system/dotnet-sdk-9.nix
     ../../system/latest-kernel.nix

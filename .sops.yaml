@@ -5,6 +5,9 @@ keys:
   hosts:
     - &shadowfax age1vqu54lumr0e9sz655x73qjnt3gkxg5sh2x5cjfkh6kzh6m8wxcgqaesk7t
     - &feanor age1ajv0r79sfmh0vl4q3p6gtzg309863hpv2vw68qlrnkc49g0wm3ws2nmewx
+    - &coop-atlas age1alucgaw8kfyz5xaxgy7jg0yyyry2qywdcsdd3gwtzf3r3galegvqj44n40
+    - &coop-erinyes age1fgpzxkqwpgnpvy0eg6cv29sxv0sdp8l0sv8h09kmm7sma3mnypks69ntrq
+    - &coop-theia age1pgwfxw4d67zuf276cezzf6ypg2gtn4p6g4x5he4q8yvfxh9flusshharlu
 
 creation_rules:
   - path_regex: secrets/shared/.*
@@ -27,6 +30,17 @@ creation_rules:
         age:
           - *shadowfax
           - *feanor
+
+  - path_regex: secrets/attic/.*
+    key_groups:
+      - pgp:
+          - *julian
+        age:
+          - *shadowfax
+          - *feanor
+          - *coop-atlas
+          - *coop-erinyes
+          - *coop-theia
 
   - path_regex: secrets/chris/.*
     key_groups:

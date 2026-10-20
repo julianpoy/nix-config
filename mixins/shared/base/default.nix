@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./nixpkgs-unstable.nix
+    ./binary-cache.nix
     ./boot.nix
     ./core.nix
     ./desktop-core.nix
