@@ -1,0 +1,619 @@
+From f97858c6f0b8d5f166ffccdb4bec93b642e9c686 Mon Sep 17 00:00:00 2001
+From: Jakob Petsovits <jpetso@petsovits.com>
+Date: Sun, 22 Dec 2024 23:26:28 -0500
+Subject: [PATCH] libinput: Support custom acceleration profiles
+
+To mirror libinput's pairing of the "steps" and "points" data
+in a single function call, we take a lesson from pressure curves
+and expose acceleration function parameters as a single serialized
+string property. Despite the parsing, this ends up much simpler
+than two separate values per acceleration type.
+
+Like libinput, we expose "fallback", "motion" and "scroll" types
+as separate, optional values. For example, assign point data like
+"3:0.0,9.0,36.0,81.0" (step + four pointer speed values, from the
+libinput docs example) to "pointerAccelerationCustomProfileMotion"
+in order to make your cursor accelerate really hard.
+
+The custom profile will be enabled when at least one type has
+valid point data assigned, and the "pointerAccelerationProfile"
+property is set to `LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM`.
+---
+ autotests/libinput/device_test.cpp   | 153 ++++++++++++++++++++++++++-
+ autotests/libinput/mock_libinput.cpp |  45 ++++++++
+ src/backends/libinput/device.cpp     | 143 ++++++++++++++++++++++++-
+ src/backends/libinput/device.h       |  69 ++++++++++++
+ 4 files changed, 400 insertions(+), 10 deletions(-)
+
+diff --git a/autotests/libinput/device_test.cpp b/autotests/libinput/device_test.cpp
+index e797b32117a..582f7c4e175 100644
+--- a/autotests/libinput/device_test.cpp
++++ b/autotests/libinput/device_test.cpp
+@@ -44,6 +44,8 @@ private Q_SLOTS:
+     void testDefaultPointerAccelerationProfileFlat();
+     void testDefaultPointerAccelerationProfileAdaptive_data();
+     void testDefaultPointerAccelerationProfileAdaptive();
++    void testDefaultPointerAccelerationProfileCustom_data();
++    void testDefaultPointerAccelerationProfileCustom();
+     void testDefaultClickMethodAreas_data();
+     void testDefaultClickMethodAreas();
+     void testDefaultClickMethodClickfinger_data();
+@@ -137,6 +139,8 @@ private Q_SLOTS:
+     void testLoadPointerAcceleration();
+     void testLoadPointerAccelerationProfile_data();
+     void testLoadPointerAccelerationProfile();
++    void testLoadPointerAccelerationProfileCustom_data();
++    void testLoadPointerAccelerationProfileCustom();
+     void testLoadClickMethod_data();
+     void testLoadClickMethod();
+     void testLoadTapToClick_data();
+@@ -518,6 +522,26 @@ void TestLibinputDevice::testDefaultPointerAccelerationProfileAdaptive()
+     QCOMPARE(dbusProperty<bool>(d.sysName(), "defaultPointerAccelerationProfileAdaptive"), enabled);
+ }
+ 
++void TestLibinputDevice::testDefaultPointerAccelerationProfileCustom_data()
++{
++    QTest::addColumn<bool>("enabled");
++
++    QTest::newRow("enabled") << true;
++    QTest::newRow("disabled") << false;
++}
++
++void TestLibinputDevice::testDefaultPointerAccelerationProfileCustom()
++{
++    QFETCH(bool, enabled);
++    libinput_device device;
++    device.defaultPointerAccelerationProfile = enabled ? LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM : LIBINPUT_CONFIG_ACCEL_PROFILE_NONE;
++
++    Device d(&device);
++    QCOMPARE(d.defaultPointerAccelerationProfileCustom(), enabled);
++    QCOMPARE(d.property("defaultPointerAccelerationProfileCustom").toBool(), enabled);
++    QCOMPARE(dbusProperty<bool>(d.sysName(), "defaultPointerAccelerationProfileCustom"), enabled);
++}
++
+ void TestLibinputDevice::testDefaultClickMethodAreas_data()
+ {
+     QTest::addColumn<bool>("enabled");
+@@ -1815,14 +1839,21 @@ void TestLibinputDevice::testLoadPointerAccelerationProfile_data()
+     QTest::addColumn<quint32>("configValue");
+     QTest::addColumn<QString>("configValuePropNameString");
+ 
+-    QTest::newRow("pointerAccelerationProfileFlat -> pointerAccelerationProfileAdaptive")
++    QTest::newRow("pointerAccelerationProfileFlat -> pointerAccelerationProfileAdaptive") //
+         << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
+         << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive";
+-    QTest::newRow("pointerAccelerationProfileAdaptive -> pointerAccelerationProfileFlat")
++    QTest::newRow("pointerAccelerationProfileAdaptive -> pointerAccelerationProfileFlat") //
+         << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive"
+         << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat";
+-    QTest::newRow("pointerAccelerationProfileAdaptive -> pointerAccelerationProfileAdaptive")
+-        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive" << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive";
++    QTest::newRow("pointerAccelerationProfileAdaptive -> pointerAccelerationProfileAdaptive") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive"
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive";
++    QTest::newRow("pointerAccelerationProfileCustom -> pointerAccelerationProfileFlat") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM << "pointerAccelerationProfileCustom" //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat";
++    QTest::newRow("pointerAccelerationProfileCustom -> pointerAccelerationProfileAdaptive") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM << "pointerAccelerationProfileCustom"
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive";
+ }
+ 
+ void TestLibinputDevice::testLoadPointerAccelerationProfile()
+@@ -1838,9 +1869,10 @@ void TestLibinputDevice::testLoadPointerAccelerationProfile()
+     QByteArray configValuePropName = configValuePropNameString.toLatin1();
+ 
+     inputConfig.writeEntry("PointerAccelerationProfile", configValue);
++    inputConfig.writeEntry("PointerAccelerationCustomPointsFallback", "1:0,1"); // in case we start with a custom profile
+ 
+     libinput_device device;
+-    device.supportedPointerAccelerationProfiles = LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT | LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE;
++    device.supportedPointerAccelerationProfiles = LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT | LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE | LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM;
+     device.pointerAccelerationProfile = (libinput_config_accel_profile)initValue;
+     device.setPointerAccelerationProfileReturnValue = false;
+ 
+@@ -1867,6 +1899,117 @@ void TestLibinputDevice::testLoadPointerAccelerationProfile()
+     }
+ }
+ 
++void TestLibinputDevice::testLoadPointerAccelerationProfileCustom_data()
++{
++    QTest::addColumn<quint32>("initProfile");
++    QTest::addColumn<QString>("initProfilePropNameString");
++    QTest::addColumn<QString>("configPointsType");
++    QTest::addColumn<QString>("configPoints");
++    QTest::addColumn<bool>("configPointsValid");
++    QTest::addColumn<QString>("setPointsType");
++    QTest::addColumn<QString>("setPoints");
++
++    QTest::newRow("fallback step size 1, [0.0, 1.0]") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << "Fallback" << "1.0:0.0,1.0" << true << "Fallback" << "1:0,1";
++    QTest::newRow("fallback step size 1, [0.0, 1.0] + motion step size 3, [0.0, 9.0, 36.0, 81.0]") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive"
++        << "Fallback" << "1:0,1" << true << "Motion" << "3:0,9,36.,81.0";
++    QTest::newRow("fallback step size 1, [1.0, 1.0] + scroll step size 1, [0.0, 1.0]") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << "Fallback" << "1:1,1" << true << "Scroll" << "1:0,1";
++    QTest::newRow("switch away from custom profile by unsetting points") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive"
++        << "Fallback" << "1:1,1" << true << "Fallback" << QString();
++    QTest::newRow("missing points entry") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << QString() << QString() << false << QString() << QString();
++    QTest::newRow("invalid step") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE << "pointerAccelerationProfileAdaptive"
++        << "Fallback" << "0:0,1" << false << QString() << QString();
++    QTest::newRow("missing delimiter") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << "Fallback" << "1" << false << QString() << QString();
++    QTest::newRow("missing step value") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << "Fallback" << ":0,1" << false << QString() << QString();
++    QTest::newRow("missing points after step") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << "Fallback" << "1:" << false << QString() << QString();
++    QTest::newRow("missing second point") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << "Fallback" << "1:1" << false << QString() << QString();
++    QTest::newRow("invalid delimiter") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << "Fallback" << "1;0,1" << false << QString() << QString();
++    QTest::newRow("invalid step format") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << "Fallback" << "1s:0,1" << false << QString() << QString();
++    QTest::newRow("invalid point format") //
++        << (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT << "pointerAccelerationProfileFlat"
++        << "Fallback" << "1:0,1p" << false << QString() << QString();
++}
++
++void TestLibinputDevice::testLoadPointerAccelerationProfileCustom()
++{
++    auto config = KSharedConfig::openConfig(QString(), KConfig::SimpleConfig);
++    KConfigGroup inputConfig(config, QStringLiteral("Test"));
++    QFETCH(quint32, initProfile);
++    QFETCH(QString, initProfilePropNameString);
++    QFETCH(QString, configPointsType);
++    QFETCH(QString, configPoints);
++    QFETCH(bool, configPointsValid);
++    QFETCH(QString, setPointsType);
++    QFETCH(QString, setPoints);
++
++    quint32 defaultProfile = LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT;
++    QByteArray defaultProfilePropName = QByteArrayLiteral("pointerAccelerationProfileFlat");
++    QByteArray initProfilePropName = initProfilePropNameString.toLatin1();
++    quint32 configProfile = LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM;
++    QByteArray configProfilePropName = QByteArrayLiteral("pointerAccelerationProfileCustom");
++    QByteArray configPointsPropName = QStringLiteral("pointerAccelerationCustomPoints%1").arg(configPointsType).toLatin1();
++    QString configPointsKey = QStringLiteral("PointerAccelerationCustomPoints%1").arg(configPointsType);
++    QByteArray setPointsPropName = QStringLiteral("pointerAccelerationCustomPoints%1").arg(setPointsType).toLatin1();
++    QString setPointsKey = QStringLiteral("PointerAccelerationCustomPoints%1").arg(setPointsType);
++
++    inputConfig.writeEntry("PointerAccelerationProfile", configProfile);
++    if (!configPointsType.isEmpty() && !configPoints.isEmpty()) {
++        inputConfig.writeEntry(configPointsKey, configPoints.toLatin1());
++    }
++
++    libinput_device device;
++    device.supportedPointerAccelerationProfiles = LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT | LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE | LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM;
++    device.defaultPointerAccelerationProfile = (libinput_config_accel_profile)defaultProfile;
++    device.pointerAccelerationProfile = (libinput_config_accel_profile)initProfile;
++    device.setPointerAccelerationProfileReturnValue = false;
++
++    Device d(&device);
++    QCOMPARE(d.property(initProfilePropName).toBool(), true);
++    QCOMPARE(d.property(configProfilePropName).toBool(), initProfile == configProfile);
++    // no config group set, should not change
++    d.loadConfiguration();
++    QCOMPARE(d.property(initProfilePropName).toBool(), true);
++    QCOMPARE(d.property(configProfilePropName).toBool(), initProfile == configProfile);
++
++    // set the group
++    d.setConfig(inputConfig);
++    d.loadConfiguration();
++    QCOMPARE(d.property(initProfilePropName).toBool(), !configPointsValid || initProfile == configProfile);
++    QCOMPARE(d.property(configProfilePropName).toBool(), configPointsValid);
++    QCOMPARE(d.property(configPointsPropName).toString(), configPointsValid ? configPoints : QString());
++    QCOMPARE(dbusProperty<bool>(d.sysName(), initProfilePropName), !configPointsValid || initProfile == configProfile);
++    QCOMPARE(dbusProperty<bool>(d.sysName(), configProfilePropName), configPointsValid);
++    QCOMPARE(dbusProperty<QString>(d.sysName(), configPointsPropName), configPointsValid ? configPoints : QString());
++
++    // and try to store a new value
++    if (!setPointsType.isEmpty() && !setPoints.isEmpty()) {
++        d.setProperty(setPointsPropName, setPoints);
++        QCOMPARE(inputConfig.readEntry("PointerAccelerationProfile", (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_NONE), setPoints.isEmpty() ? defaultProfile : configProfile);
++        QCOMPARE(inputConfig.readEntry(configPointsKey, QString()), configPointsType == setPointsType ? setPoints : configPoints);
++        QCOMPARE(inputConfig.readEntry(setPointsKey, QString()), setPoints);
++    }
++}
++
+ void TestLibinputDevice::testLoadClickMethod_data()
+ {
+     QTest::addColumn<quint32>("initValue");
+diff --git a/autotests/libinput/mock_libinput.cpp b/autotests/libinput/mock_libinput.cpp
+index fbcc5c8c953..964790e2883 100644
+--- a/autotests/libinput/mock_libinput.cpp
++++ b/autotests/libinput/mock_libinput.cpp
+@@ -10,6 +10,8 @@
+ 
+ #include "mock_libinput.h"
+ 
++#include <QMap>
++
+ #include <linux/input.h>
+ 
+ int libinput_device_keyboard_has_key(struct libinput_device *device, uint32_t code)
+@@ -278,6 +280,49 @@ enum libinput_config_accel_profile libinput_device_config_accel_get_profile(stru
+     return device->pointerAccelerationProfile;
+ }
+ 
++struct LibinputConfigAccelPrivate
++{
++    libinput_config_accel_profile profile;
++    QMap<libinput_config_accel_type, QPair<double, QList<double>>> points;
++
++    LibinputConfigAccelPrivate(libinput_config_accel_profile p)
++        : profile(p)
++    {
++    }
++};
++
++struct libinput_config_accel *libinput_config_accel_create(enum libinput_config_accel_profile profile)
++{
++    return reinterpret_cast<libinput_config_accel *>(new LibinputConfigAccelPrivate(profile));
++}
++
++void libinput_config_accel_destroy(struct libinput_config_accel *config)
++{
++    delete reinterpret_cast<LibinputConfigAccelPrivate *>(config);
++}
++
++enum libinput_config_status libinput_config_accel_set_points(struct libinput_config_accel *config,
++                                                             enum libinput_config_accel_type accel_type,
++                                                             double step, size_t npoints, const double *points)
++{
++    auto p = reinterpret_cast<LibinputConfigAccelPrivate *>(config);
++    if (p->profile == LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM) {
++        if (step <= 0 || npoints < 2) {
++            return LIBINPUT_CONFIG_STATUS_INVALID;
++        }
++        p->points[accel_type] = {step, QList<double>{points, points + npoints}};
++        return LIBINPUT_CONFIG_STATUS_SUCCESS;
++    }
++    return LIBINPUT_CONFIG_STATUS_INVALID;
++}
++
++enum libinput_config_status libinput_device_config_accel_apply(struct libinput_device *device, struct libinput_config_accel *config)
++{
++    auto p = reinterpret_cast<LibinputConfigAccelPrivate *>(config);
++    // if we were to test that the custom points/step also arrived correctly in libinput, we'd store them here for later comparison
++    return libinput_device_config_accel_set_profile(device, p->profile);
++}
++
+ uint32_t libinput_device_config_click_get_methods(struct libinput_device *device)
+ {
+     return device->supportedClickMethods;
+diff --git a/src/backends/libinput/device.cpp b/src/backends/libinput/device.cpp
+index 86c6d8def7f..3d07ec4f52f 100644
+--- a/src/backends/libinput/device.cpp
++++ b/src/backends/libinput/device.cpp
+@@ -142,6 +142,9 @@ enum class ConfigKey {
+     DisableWhileTyping,
+     PointerAcceleration,
+     PointerAccelerationProfile,
++    PointerAccelerationCustomPointsFallback,
++    PointerAccelerationCustomPointsMotion,
++    PointerAccelerationCustomPointsScroll,
+     TapToClick,
+     LmrTapButtonMap,
+     TapAndDrag,
+@@ -250,6 +253,11 @@ static const QMap<ConfigKey, std::shared_ptr<ConfigDataBase>> s_configData{
+     {ConfigKey::DisableWhileTyping, std::make_shared<ConfigData<bool>>(QByteArrayLiteral("DisableWhileTyping"), &Device::setDisableWhileTyping, &Device::disableWhileTypingEnabledByDefault)},
+     {ConfigKey::PointerAcceleration, std::make_shared<ConfigData<QString>>(QByteArrayLiteral("PointerAcceleration"), &Device::setPointerAccelerationFromString, &Device::defaultPointerAccelerationToString)},
+     {ConfigKey::PointerAccelerationProfile, std::make_shared<ConfigData<quint32>>(QByteArrayLiteral("PointerAccelerationProfile"), &Device::setPointerAccelerationProfileFromInt, &Device::defaultPointerAccelerationProfileToInt)},
++    {ConfigKey::PointerAccelerationCustomPointsFallback, std::make_shared<ConfigData<QString>>(QByteArrayLiteral("PointerAccelerationCustomPointsFallback"), &Device::setPointerAccelerationCustomPointsFallback, &Device::defaultPointerAccelerationEmptyPoints)},
++    {ConfigKey::PointerAccelerationCustomPointsMotion,
++     std::make_shared<ConfigData<QString>>(QByteArrayLiteral("PointerAccelerationCustomPointsMotion"), &Device::setPointerAccelerationCustomPointsMotion, &Device::defaultPointerAccelerationEmptyPoints)},
++    {ConfigKey::PointerAccelerationCustomPointsScroll,
++     std::make_shared<ConfigData<QString>>(QByteArrayLiteral("PointerAccelerationCustomPointsScroll"), &Device::setPointerAccelerationCustomPointsScroll, &Device::defaultPointerAccelerationEmptyPoints)},
+     {ConfigKey::TapToClick, std::make_shared<ConfigData<bool>>(QByteArrayLiteral("TapToClick"), &Device::setTapToClick, &Device::tapToClickEnabledByDefault)},
+     {ConfigKey::TapAndDrag, std::make_shared<ConfigData<bool>>(QByteArrayLiteral("TapAndDrag"), &Device::setTapAndDrag, &Device::tapAndDragEnabledByDefault)},
+     {ConfigKey::TapDragLock, std::make_shared<ConfigData<bool>>(QByteArrayLiteral("TapDragLock"), &Device::setTapDragLock, &Device::tapDragLockEnabledByDefault)},
+@@ -389,6 +397,26 @@ Device::Device(libinput_device *device, QObject *parent)
+     , m_supportedPointerAccelerationProfiles(libinput_device_config_accel_get_profiles(m_device))
+     , m_defaultPointerAccelerationProfile(libinput_device_config_accel_get_default_profile(m_device))
+     , m_pointerAccelerationProfile(libinput_device_config_accel_get_profile(m_device))
++    , m_pointerAccelerationCustomConfig({nullptr, nullptr})
++    , m_pointerAccelerationCustomProfileFallback({
++          .serialized = QString(),
++          .changedSignal = &Device::pointerAccelerationCustomPointsFallbackChanged,
++          .configKey = ConfigKey::PointerAccelerationCustomPointsFallback,
++          .type = LIBINPUT_ACCEL_TYPE_FALLBACK,
++      })
++    , m_pointerAccelerationCustomProfileMotion({
++          .serialized = QString(),
++          .changedSignal = &Device::pointerAccelerationCustomPointsMotionChanged,
++          .configKey = ConfigKey::PointerAccelerationCustomPointsMotion,
++          .type = LIBINPUT_ACCEL_TYPE_MOTION,
++      })
++    , m_pointerAccelerationCustomProfileScroll({
++          .serialized = QString(),
++          .changedSignal = &Device::pointerAccelerationCustomPointsScrollChanged,
++          .configKey = ConfigKey::PointerAccelerationCustomPointsScroll,
++          .type = LIBINPUT_ACCEL_TYPE_SCROLL,
++      })
++    , m_wantPointerAccelerationCustomProfile(m_pointerAccelerationProfile == LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM)
+     , m_enabled(m_supportsDisableEvents ? (libinput_device_config_send_events_get_mode(m_device) & LIBINPUT_CONFIG_SEND_EVENTS_DISABLED) == 0 : true)
+     , m_disableEventsOnExternalMouseEnabledByDefault(m_supportsDisableEventsOnExternalMouse && (libinput_device_config_send_events_get_default_mode(m_device) & LIBINPUT_CONFIG_SEND_EVENTS_DISABLED_ON_EXTERNAL_MOUSE))
+     , m_disableEventsOnExternalMouse(m_supportsDisableEventsOnExternalMouse && (libinput_device_config_send_events_get_mode(m_device) & LIBINPUT_CONFIG_SEND_EVENTS_DISABLED_ON_EXTERNAL_MOUSE))
+@@ -557,21 +585,126 @@ void Device::setPointerAccelerationProfile(bool set, enum libinput_config_accel_
+         return;
+     }
+     if (!set) {
+-        profile = (profile == LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT) ? LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE : LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT;
+-        if (!(m_supportedPointerAccelerationProfiles & profile)) {
+-            return;
+-        }
++        return;
+     }
+ 
+-    if (libinput_device_config_accel_set_profile(m_device, profile) == LIBINPUT_CONFIG_STATUS_SUCCESS) {
++    if (profile == LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM) {
++        setPointerAccelerationProfileCustom(true);
++    } else if (libinput_device_config_accel_set_profile(m_device, profile) == LIBINPUT_CONFIG_STATUS_SUCCESS) {
+         if (m_pointerAccelerationProfile != profile) {
+             m_pointerAccelerationProfile = profile;
+             Q_EMIT pointerAccelerationProfileChanged();
+             writeEntry(ConfigKey::PointerAccelerationProfile, (quint32)profile);
+         }
++        m_wantPointerAccelerationCustomProfile = m_pointerAccelerationProfile == LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM;
++    }
++}
++
++void Device::setPointerAccelerationProfileCustom(bool set)
++{
++    if (!(m_supportedPointerAccelerationProfiles & LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM)) {
++        return;
++    }
++    if (!set) {
++        return;
++    }
++    if (!m_pointerAccelerationCustomConfig) {
++        m_wantPointerAccelerationCustomProfile = true;
++        return;
++    }
++
++    if (libinput_device_config_accel_apply(m_device, m_pointerAccelerationCustomConfig.get()) == LIBINPUT_CONFIG_STATUS_SUCCESS) {
++        if (m_pointerAccelerationProfile != LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM) {
++            m_pointerAccelerationProfile = LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM;
++            Q_EMIT pointerAccelerationProfileChanged();
++            writeEntry(ConfigKey::PointerAccelerationProfile, (quint32)LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM);
++        }
++        m_wantPointerAccelerationCustomProfile = m_pointerAccelerationProfile == LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM;
++    }
++}
++
++QString Device::defaultPointerAccelerationEmptyPoints() const
++{
++    return QString();
++}
++
++void Device::setPointerAccelerationCustomPoints(const QString &set, AccelerationCustomProfileData &data)
++{
++    if (!(m_supportedPointerAccelerationProfiles & LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM)) {
++        return;
++    }
++
++    if (set.isEmpty() && !data.serialized.isEmpty()) {
++        data.serialized = set;
++        // clang-format off
++        Q_EMIT (this->*data.changedSignal)();
++        // clang-format on
++        writeEntry(data.configKey, set);
++        // can't unset a type of points in the config object, so let's recreate it from scratch
++        m_pointerAccelerationCustomConfig.reset();
++        for (auto *otherData : {&m_pointerAccelerationCustomProfileFallback, &m_pointerAccelerationCustomProfileMotion, &m_pointerAccelerationCustomProfileScroll}) {
++            if (otherData != &data) {
++                setPointerAccelerationCustomPoints(otherData->serialized, *otherData);
++            }
++        }
++        // if no custom points are left, reset to default (non-custom) acceleration profile instead
++        if (m_pointerAccelerationProfile == LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM && !m_pointerAccelerationCustomConfig) {
++            setPointerAccelerationProfile(true, m_defaultPointerAccelerationProfile);
++        }
++        return;
++    }
++
++    double step;
++    QList<double> points;
++    if (!deserializePointerAccelerationCustomPoints(set, step, points)) {
++        return;
++    }
++    if (!m_pointerAccelerationCustomConfig) {
++        auto config = libinput_config_accel_create(LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM);
++        if (!config) {
++            return;
++        }
++        m_pointerAccelerationCustomConfig = {config, &libinput_config_accel_destroy};
++    }
++
++    if (libinput_config_accel_set_points(m_pointerAccelerationCustomConfig.get(), data.type, step, points.size(), points.data()) == LIBINPUT_CONFIG_STATUS_SUCCESS) {
++        if (data.serialized != set) {
++            data.serialized = set;
++            // clang-format off
++            Q_EMIT (this->*data.changedSignal)();
++            // clang-format on
++            writeEntry(data.configKey, set);
++        }
++        if (m_wantPointerAccelerationCustomProfile) {
++            setPointerAccelerationProfileCustom(true);
++        }
+     }
+ }
+ 
++bool Device::deserializePointerAccelerationCustomPoints(const QStringView &curve, double &step, QList<double> &points) const
++{
++    const QList<QStringView> data = curve.split(':');
++    if (data.size() != 2) {
++        return false;
++    }
++
++    bool ok = false;
++    if (step = data[0].toDouble(&ok); !ok) {
++        return false;
++    }
++
++    points.clear();
++    for (const QStringView &pointStr : data[1].split(',')) {
++        if (double point = pointStr.toDouble(&ok); ok) {
++            points.append(point);
++        } else {
++            return false;
++        }
++    }
++
++    return true;
++}
++
+ void Device::setClickMethod(bool set, enum libinput_config_click_method method)
+ {
+     if (!(m_supportedClickMethods & method)) {
+diff --git a/src/backends/libinput/device.h b/src/backends/libinput/device.h
+index 86d7fe83a06..b483d4403c7 100644
+--- a/src/backends/libinput/device.h
++++ b/src/backends/libinput/device.h
+@@ -109,6 +109,18 @@ class KWIN_EXPORT Device : public InputDevice
+     Q_PROPERTY(bool supportsPointerAccelerationProfileAdaptive READ supportsPointerAccelerationProfileAdaptive CONSTANT)
+     Q_PROPERTY(bool defaultPointerAccelerationProfileAdaptive READ defaultPointerAccelerationProfileAdaptive CONSTANT)
+     Q_PROPERTY(bool pointerAccelerationProfileAdaptive READ pointerAccelerationProfileAdaptive WRITE setPointerAccelerationProfileAdaptive NOTIFY pointerAccelerationProfileChanged)
++
++    Q_PROPERTY(bool supportsPointerAccelerationProfileCustom READ supportsPointerAccelerationProfileCustom CONSTANT)
++    Q_PROPERTY(bool defaultPointerAccelerationProfileCustom READ defaultPointerAccelerationProfileCustom CONSTANT)
++    Q_PROPERTY(bool pointerAccelerationProfileCustom READ pointerAccelerationProfileCustom WRITE setPointerAccelerationProfileCustom NOTIFY pointerAccelerationProfileChanged)
++
++    Q_PROPERTY(QString pointerAccelerationCustomPointsFallback READ pointerAccelerationCustomPointsFallback WRITE
++                   setPointerAccelerationCustomPointsFallback NOTIFY pointerAccelerationCustomPointsFallbackChanged)
++    Q_PROPERTY(QString pointerAccelerationCustomPointsMotion READ pointerAccelerationCustomPointsMotion WRITE setPointerAccelerationCustomPointsMotion
++                   NOTIFY pointerAccelerationCustomPointsMotionChanged)
++    Q_PROPERTY(QString pointerAccelerationCustomPointsScroll READ pointerAccelerationCustomPointsScroll WRITE setPointerAccelerationCustomPointsScroll
++                   NOTIFY pointerAccelerationCustomPointsScrollChanged)
++
+     //
+     // tapping
+     Q_PROPERTY(int tapFingerCount READ tapFingerCount CONSTANT)
+@@ -555,6 +567,10 @@ public:
+     {
+         return (m_supportedPointerAccelerationProfiles & LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE);
+     }
++    bool supportsPointerAccelerationProfileCustom() const
++    {
++        return (m_supportedPointerAccelerationProfiles & LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM);
++    }
+     bool defaultPointerAccelerationProfileFlat() const
+     {
+         return (m_defaultPointerAccelerationProfile & LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT);
+@@ -563,6 +579,10 @@ public:
+     {
+         return (m_defaultPointerAccelerationProfile & LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE);
+     }
++    bool defaultPointerAccelerationProfileCustom() const
++    {
++        return (m_defaultPointerAccelerationProfile & LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM);
++    }
+     bool pointerAccelerationProfileFlat() const
+     {
+         return (m_pointerAccelerationProfile & LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT);
+@@ -571,6 +591,10 @@ public:
+     {
+         return (m_pointerAccelerationProfile & LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE);
+     }
++    bool pointerAccelerationProfileCustom() const
++    {
++        return (m_pointerAccelerationProfile & LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM);
++    }
+     void setPointerAccelerationProfile(bool set, enum libinput_config_accel_profile profile);
+     void setPointerAccelerationProfileFlat(bool set)
+     {
+@@ -580,6 +604,7 @@ public:
+     {
+         setPointerAccelerationProfile(set, LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE);
+     }
++    void setPointerAccelerationProfileCustom(bool set);
+     void setPointerAccelerationProfileFromInt(quint32 profile)
+     {
+         setPointerAccelerationProfile(true, (libinput_config_accel_profile)profile);
+@@ -588,6 +613,33 @@ public:
+     {
+         return defaultValue("PointerAccelerationProfile", static_cast<quint32>(m_defaultPointerAccelerationProfile));
+     }
++    QString pointerAccelerationCustomPointsFallback() const
++    {
++        return m_pointerAccelerationCustomProfileFallback.serialized;
++    }
++    QString pointerAccelerationCustomPointsMotion() const
++    {
++        return m_pointerAccelerationCustomProfileMotion.serialized;
++    }
++    QString pointerAccelerationCustomPointsScroll() const
++    {
++        return m_pointerAccelerationCustomProfileScroll.serialized;
++    }
++    QString defaultPointerAccelerationEmptyPoints() const;
++    bool deserializePointerAccelerationCustomPoints(const QStringView &curve, double &step, QList<double> &points) const;
++    void setPointerAccelerationCustomPointsFallback(const QString &set)
++    {
++        setPointerAccelerationCustomPoints(set, m_pointerAccelerationCustomProfileFallback);
++    }
++    void setPointerAccelerationCustomPointsMotion(const QString &set)
++    {
++        setPointerAccelerationCustomPoints(set, m_pointerAccelerationCustomProfileMotion);
++    }
++    void setPointerAccelerationCustomPointsScroll(const QString &set)
++    {
++        setPointerAccelerationCustomPoints(set, m_pointerAccelerationCustomProfileScroll);
++    }
++
+     bool supportsClickMethodAreas() const
+     {
+         return (m_supportedClickMethods & LIBINPUT_CONFIG_CLICK_METHOD_BUTTON_AREAS);
+@@ -796,6 +848,9 @@ Q_SIGNALS:
+     void disableWhileTypingChanged();
+     void pointerAccelerationChanged();
+     void pointerAccelerationProfileChanged();
++    void pointerAccelerationCustomPointsFallbackChanged();
++    void pointerAccelerationCustomPointsMotionChanged();
++    void pointerAccelerationCustomPointsScrollChanged();
+     void enabledChanged();
+     void disableEventsOnExternalMouseChanged();
+     void tapToClickChanged();
+@@ -832,6 +887,15 @@ private:
+         return fallback;
+     }
+ 
++    struct AccelerationCustomProfileData
++    {
++        QString serialized;
++        void (Device::*changedSignal)();
++        ConfigKey configKey;
++        enum libinput_config_accel_type type;
++    };
++    void setPointerAccelerationCustomPoints(const QString &set, AccelerationCustomProfileData &data);
++
+     libinput_device *m_device;
+     bool m_keyboard;
+     bool m_alphaNumericKeyboard = false;
+@@ -892,6 +956,11 @@ private:
+     quint32 m_supportedPointerAccelerationProfiles;
+     enum libinput_config_accel_profile m_defaultPointerAccelerationProfile;
+     enum libinput_config_accel_profile m_pointerAccelerationProfile;
++    std::unique_ptr<libinput_config_accel, decltype(&libinput_config_accel_destroy)> m_pointerAccelerationCustomConfig;
++    AccelerationCustomProfileData m_pointerAccelerationCustomProfileFallback;
++    AccelerationCustomProfileData m_pointerAccelerationCustomProfileMotion;
++    AccelerationCustomProfileData m_pointerAccelerationCustomProfileScroll;
++    bool m_wantPointerAccelerationCustomProfile;
+     bool m_enabled;
+     bool m_disableEventsOnExternalMouseEnabledByDefault;
+     bool m_disableEventsOnExternalMouse;
+-- 
+GitLab
+
