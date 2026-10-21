@@ -13,11 +13,12 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ({...}: {home-manager.extraSpecialArgs = specialArgs;})
     (import ../../users/alexis {stateVersion = "26.05";})
 
-    ../../mixins/shared/base/default.gnome.nix
+    ../../mixins/shared/base
 
     ../../mixins/applications/discord.nix
     ../../mixins/applications/firefox.nix
     ../../mixins/applications/gimp.nix
+    ../../mixins/applications/google-chrome.nix
     ../../mixins/applications/libreoffice.nix
     ../../mixins/applications/logitech.nix
     ../../mixins/applications/obs.nix
