@@ -42,7 +42,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/cli/fish.nix
     ../../mixins/cli/litra-rs.nix
     ../../mixins/cli/neovim.nix
-    ../../mixins/system/ambient-keyboard-backlight.nix
+    ../../mixins/system/ambient-keyboard-backlight-plasma.nix
     ../../mixins/system/appimage.nix
     ../../mixins/system/attic-push.nix
     ../../mixins/system/bluetooth.nix
