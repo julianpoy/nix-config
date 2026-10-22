@@ -1,16 +1,12 @@
 {
   disko.devices = {
     disk = {
-      main = {
+      system = {
         type = "disk";
         device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-            };
             ESP = {
               size = "1G";
               type = "EF00";
@@ -24,9 +20,19 @@
             root = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/";
+                type = "luks";
+                name = "crypted";
+                extraFormatArgs = ["--sector-size" "4096"];
+                settings = {
+                  allowDiscards = true;
+                  bypassWorkqueues = true;
+                  crypttabExtraOpts = ["fido2-device=auto"];
+                };
+                content = {
+                  type = "filesystem";
+                  format = "ext4";
+                  mountpoint = "/";
+                };
               };
             };
           };
