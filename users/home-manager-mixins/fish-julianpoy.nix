@@ -29,5 +29,11 @@
     setupstream = ''
       git branch --set-upstream-to=origin/(git rev-parse --abbrev-ref HEAD) (git rev-parse --abbrev-ref HEAD)
     '';
+    nixrun = ''
+      nix run --impure nixpkgs#$argv[1] -- $argv[2..]
+    '';
+    nixshell = ''
+      nix shell --impure nixpkgs#$argv
+    '';
   };
 }
