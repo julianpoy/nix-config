@@ -15,7 +15,6 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     "${specialArgs.nixos-hardware}/framework/12-inch/13th-gen-intel"
 
     ../../mixins/shared/base
-
     ../../mixins/applications/dbeaver.nix
     ../../mixins/applications/discord.nix
     ../../mixins/applications/element.nix
@@ -40,5 +39,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/system/thermald.nix
     ../../mixins/system/xone.nix
     ../../mixins/system/yubikey.nix
+    ../../mixins/applications/vscode.nix
+
   ];
 }
