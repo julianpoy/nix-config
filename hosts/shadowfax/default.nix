@@ -40,6 +40,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/cli/claude-code.nix
     ../../mixins/cli/coder.nix
     ../../mixins/cli/fish.nix
+    ../../mixins/cli/github.nix
     ../../mixins/cli/litra-rs.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/system/ambient-keyboard-backlight-plasma.nix
