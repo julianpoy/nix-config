@@ -40,6 +40,5 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/system/xone.nix
     ../../mixins/system/yubikey.nix
     ../../mixins/applications/vscode.nix
-
   ];
 }
