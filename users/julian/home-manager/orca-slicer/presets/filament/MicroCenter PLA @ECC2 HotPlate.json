@@ -1,0 +1,15 @@
+{
+	"filament_cost": [
+		"8.99"
+	],
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"filament_settings_id": [
+		"MicroCenter PLA @ECC2 HotPlate"
+	],
+	"from": "User",
+	"inherits": "Elegoo PLA @ECC2",
+	"name": "MicroCenter PLA @ECC2 HotPlate",
+	"version": "2.4.0.6"
+}

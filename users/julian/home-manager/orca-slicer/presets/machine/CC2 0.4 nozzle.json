@@ -1,0 +1,14 @@
+{
+	"from": "User",
+	"inherits": "Elegoo Centauri Carbon 2 0.4 nozzle",
+	"name": "CC2 0.4 nozzle",
+	"print_host": "10.0.5.101",
+	"printer_extruder_id": [
+		"1"
+	],
+	"printer_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"printer_settings_id": "CC2 0.4 nozzle",
+	"version": "2.3.2.60"
+}

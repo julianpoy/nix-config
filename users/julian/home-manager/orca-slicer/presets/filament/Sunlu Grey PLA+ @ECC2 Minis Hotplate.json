@@ -1,0 +1,33 @@
+{
+	"additional_cooling_fan_speed": [
+		"50"
+	],
+	"fan_min_speed": [
+		"80"
+	],
+	"filament_cost": [
+		"13"
+	],
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"filament_settings_id": [
+		"Sunlu Grey PLA+ @ECC2 Minis Hotplate"
+	],
+	"filament_z_hop": [
+		"0.6"
+	],
+	"from": "User",
+	"inherits": "Elegoo PLA @ECC2",
+	"name": "Sunlu Grey PLA+ @ECC2 Minis Hotplate",
+	"nozzle_temperature": [
+		"200"
+	],
+	"nozzle_temperature_initial_layer": [
+		"200"
+	],
+	"overhang_fan_threshold": [
+		"10%"
+	],
+	"version": "2.4.0.6"
+}

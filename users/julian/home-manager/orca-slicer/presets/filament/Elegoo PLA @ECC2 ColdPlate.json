@@ -1,0 +1,21 @@
+{
+	"filament_cost": [
+		"11"
+	],
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"filament_settings_id": [
+		"Elegoo PLA @ECC2 ColdPlate"
+	],
+	"from": "User",
+	"hot_plate_temp": [
+		"40"
+	],
+	"hot_plate_temp_initial_layer": [
+		"40"
+	],
+	"inherits": "Elegoo PLA @ECC2",
+	"name": "Elegoo PLA @ECC2 ColdPlate",
+	"version": "2.4.0.6"
+}

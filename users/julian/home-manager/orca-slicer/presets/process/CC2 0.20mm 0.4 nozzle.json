@@ -1,0 +1,19 @@
+{
+	"bridge_speed": "30",
+	"from": "User",
+	"inherits": "0.20mm Standard @Elegoo CC2 0.4 nozzle",
+	"name": "CC2 0.20mm 0.4 nozzle",
+	"outer_wall_speed": "100",
+	"overhang_2_4_speed": "30",
+	"print_extruder_id": [
+		"1"
+	],
+	"print_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"print_settings_id": "CC2 0.20mm 0.4 nozzle",
+	"sparse_infill_density": "5%",
+	"support_critical_regions_only": "1",
+	"support_on_build_plate_only": "1",
+	"version": "2.4.0.6"
+}

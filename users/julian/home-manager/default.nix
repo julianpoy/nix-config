@@ -16,6 +16,7 @@
 
       ./git.nix
       ./libvirt.nix
+      ./orca-slicer
       ./shell.nix
       ./yubikey-ssh.nix
     ];
