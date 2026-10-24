@@ -17,6 +17,11 @@
   nix.settings.trusted-users = ["@wheel"];
 
   networking.networkmanager.enable = true;
+  networking.networkmanager.settings.connectivity = {
+    uri = "http://nmcheck.gnome.org/check_network_status.txt";
+    response = "NetworkManager is online";
+    interval = 300;
+  };
 
   nixpkgs.config.allowUnfree = true;
   environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
