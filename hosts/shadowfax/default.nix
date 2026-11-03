@@ -29,6 +29,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/applications/libreoffice.nix
     ../../mixins/applications/lightcraft.nix
     ../../mixins/applications/logitech.nix
+    ../../mixins/applications/mozilla-vpn.nix
     ../../mixins/applications/nextcloud-desktop.nix
     ../../mixins/applications/obs.nix
     ../../mixins/applications/opera-flatpak.nix
