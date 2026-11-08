@@ -8,7 +8,6 @@
     wget
     curl
     tmux
-    tmate
     htop
     btop-rocm
     git
