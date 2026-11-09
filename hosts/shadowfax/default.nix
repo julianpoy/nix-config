@@ -33,6 +33,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/applications/nextcloud-desktop.nix
     ../../mixins/applications/obs.nix
     ../../mixins/applications/opera-flatpak.nix
+    ../../mixins/applications/orca-slicer.nix
     ../../mixins/applications/slack.nix
     ../../mixins/applications/spotify.nix
     ../../mixins/applications/steam.nix
