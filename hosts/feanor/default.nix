@@ -16,6 +16,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/shared/base
 
     ../../mixins/applications/blender.nix
+    ../../mixins/applications/chromaforge.nix
     ../../mixins/applications/cura.nix
     ../../mixins/applications/darktable.nix
     ../../mixins/applications/dbeaver.nix

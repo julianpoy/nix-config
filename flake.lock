@@ -1,19 +1,58 @@
 {
   "nodes": {
+    "chromaforge": {
+      "inputs": {
+        "craft-fonts": "craft-fonts",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794161204,
+        "narHash": "sha256-TbrgByZWDclFVEvnUt85QEN/ZHBhhwnxGN64dHVyzuk=",
+        "owner": "emmertex",
+        "repo": "chromaforge",
+        "rev": "96eab8af377f1eeb69e30e8628a13aaee92c9f50",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emmertex",
+        "ref": "v26.46.0",
+        "repo": "chromaforge",
+        "type": "github"
+      }
+    },
     "craft-fonts": {
       "flake": false,
       "locked": {
-        "lastModified": 1791722036,
-        "narHash": "sha256-mNnDzBcOp1X10dzmiW0iBAkb74QjuzMO4slWudxXCTE=",
+        "lastModified": 1792806581,
+        "narHash": "sha256-omhkJuluGLDxYxDJd7NFRUtkWYAsPbYOqiVifB1t2+o=",
         "owner": "storytold",
         "repo": "craft-fonts",
-        "rev": "3d9ab3a132ed0eff457e424226a435a901da30d3",
+        "rev": "b4ce3ee090ea4b06791e9501ea2f8e6f746d5cd3",
         "type": "github"
       },
       "original": {
         "owner": "storytold",
         "repo": "craft-fonts",
-        "rev": "3d9ab3a132ed0eff457e424226a435a901da30d3",
+        "rev": "b4ce3ee090ea4b06791e9501ea2f8e6f746d5cd3",
+        "type": "github"
+      }
+    },
+    "craft-fonts_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792808533,
+        "narHash": "sha256-jZ3VBAJDofB6RvsS7GGV5lLT4xiShIjpz5XHBCD2oUc=",
+        "owner": "storytold",
+        "repo": "craft-fonts",
+        "rev": "b076417b5880bd4154bd22f00695b1d28c6bea83",
+        "type": "github"
+      },
+      "original": {
+        "owner": "storytold",
+        "repo": "craft-fonts",
+        "rev": "b076417b5880bd4154bd22f00695b1d28c6bea83",
         "type": "github"
       }
     },
@@ -24,11 +63,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789770686,
-        "narHash": "sha256-uZkBR7yHdIKUFB5SZdfgh1qkGfI3XmYmI/lTiquxbck=",
+        "lastModified": 1792526520,
+        "narHash": "sha256-3hSJlv8mUVnZPMWK2+CM7a9O+nR6Z4mCh27NfLCmTPc=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "725ea35e410ad83be4931d1bff7e090eacaf3563",
+        "rev": "cedd626e11b635470fa6f9fdb8ad79b0075dd7f9",
         "type": "github"
       },
       "original": {
@@ -40,11 +79,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1793472524,
-        "narHash": "sha256-/hKS+KI2BRIVhOLtEXnM95zvPwJqTHQMfO/zWj7LzwA=",
+        "lastModified": 1794164715,
+        "narHash": "sha256-5ZZ+JIQxPc16lh4mpw7/Vp3ATxBU6d9S8Tg9RfNwCus=",
         "owner": "julianpoy",
         "repo": "dotfiles",
-        "rev": "f221286a93d536f736c1ae08202f5ae3073339f2",
+        "rev": "a7ea094272190a4b5e3e6d0fc5f110f56717723f",
         "type": "github"
       },
       "original": {
@@ -102,11 +141,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790996401,
-        "narHash": "sha256-f+kOxEmOUnQazVAmGg0i8hzwgd1kX/geY+k/Dpheye8=",
+        "lastModified": 1794251182,
+        "narHash": "sha256-R2sZBXiOJo3HAnvTiVkbbHDJy//JMlAwUKEiPbfqPXk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "db7d5e2332710f5abb088f6b5de927d7f9511b35",
+        "rev": "6eb2d33d1d0c95a37ef6443c88e6c1686012ee8b",
         "type": "github"
       },
       "original": {
@@ -118,22 +157,22 @@
     },
     "lightcraft": {
       "inputs": {
-        "craft-fonts": "craft-fonts",
+        "craft-fonts": "craft-fonts_2",
         "nixpkgs": [
           "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1792293397,
-        "narHash": "sha256-zjud9GW1oTGlL2IA4dNH5LKmYAqAU9EyPIvTryW19RM=",
+        "lastModified": 1794223939,
+        "narHash": "sha256-3Yi52TE4/XyoBDmDI5SoHtwnSsG7g7nTj+bkgq2eoZY=",
         "owner": "storytold",
         "repo": "lightcraft",
-        "rev": "4f0b110bcbd2e350c6d97b47f1d824c2222295c4",
+        "rev": "192ff72923c39e6623f2c7ff67ab3a119deb8071",
         "type": "github"
       },
       "original": {
         "owner": "storytold",
-        "ref": "v0.9.1",
+        "ref": "v0.20.0",
         "repo": "lightcraft",
         "type": "github"
       }
@@ -159,11 +198,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1791373788,
-        "narHash": "sha256-c3oMt0QoE+4yiRk6u1m2L9ogjaUw0uTGn9yk808KkgE=",
+        "lastModified": 1794222723,
+        "narHash": "sha256-jehPADpSIsWnyNHw/s44OHF9l6Y75QmW74sqO9cEe0A=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "4bc63156b109ee7b4103e3ec30565c8c92bde435",
+        "rev": "919c16cf46a7acf9b44b2c2444bc39aa094eaa85",
         "type": "github"
       },
       "original": {
@@ -219,11 +258,11 @@
     },
     "nixpkgs-2605": {
       "locked": {
-        "lastModified": 1791426274,
-        "narHash": "sha256-MWhktfFtFE8Jl7bf9Pkp7TR5MSdYCjCswSo0Gkb4ywc=",
+        "lastModified": 1793865203,
+        "narHash": "sha256-/cpdPHaySDIyCgZI6EWngiM6jK3YLUNzv1b7lTzy6Bk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7c8764b7c7b09b34f632464276218ef9090eaa11",
+        "rev": "c56a87d8e41ce69bd2af57eb35dcc117a9dfca33",
         "type": "github"
       },
       "original": {
@@ -235,11 +274,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1791456040,
-        "narHash": "sha256-H83yz/do+hjOO0uujHyH8RgtIQP2v7Mw+cLwcZK/xKc=",
+        "lastModified": 1794042290,
+        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
         "type": "github"
       },
       "original": {
@@ -274,6 +313,7 @@
     },
     "root": {
       "inputs": {
+        "chromaforge": "chromaforge",
         "disko": "disko",
         "dotfiles": "dotfiles",
         "home-manager-2505": "home-manager-2505",
@@ -297,11 +337,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791710405,
-        "narHash": "sha256-mVD4XIc5JkqMW2K04IkFUzHgHmyJZlzw5ktfgMDCbKU=",
+        "lastModified": 1793995029,
+        "narHash": "sha256-ZlE4BtMjWhfC6rFXLO9Qimn36Ene1INqCgKDDvazjhc=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "ee48786c6f9160d2c1a084aac841f68195b8420c",
+        "rev": "89a234ce2daf6e568a7d4b4fe250afdd23d84e20",
         "type": "github"
       },
       "original": {
