@@ -8,5 +8,10 @@
     imports = [
       ../../home-manager-mixins/base.nix
     ];
+
+    xdg.configFile."kwalletrc".text = ''
+      [Wallet]
+      Enabled=false
+    '';
   };
 }
