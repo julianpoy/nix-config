@@ -36,6 +36,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/system/audio/framework-13-7040-amd.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
+    ../../mixins/system/auto-upgrade.nix
     ../../mixins/system/bluetooth.nix
     ../../mixins/system/fingerprint.nix
     ../../mixins/system/fwupd.nix

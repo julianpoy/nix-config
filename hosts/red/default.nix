@@ -32,6 +32,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/cli/neovim.nix
     ../../mixins/system/amdtuning.nix
     ../../mixins/system/appimage.nix
+    ../../mixins/system/auto-upgrade.nix
     ../../mixins/system/bluetooth.nix
     ../../mixins/system/fwupd.nix
     ../../mixins/system/garbage-collection.nix
