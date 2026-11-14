@@ -15,7 +15,11 @@
       overrideConfig = true;
       immutableByDefault = false;
 
-      workspace.lookAndFeel = "org.kde.breezedark.desktop";
+      workspace = {
+        lookAndFeel = "org.kde.breezedark.desktop";
+        wallpaper = ./rainier.jpg;
+        wallpaperFillMode = "preserveAspectCrop";
+      };
 
       session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
 
@@ -28,6 +32,7 @@
       kscreenlocker = {
         autoLock = false;
         lockOnResume = false;
+        appearance.wallpaper = ./rainier.jpg;
       };
 
       panels = [
