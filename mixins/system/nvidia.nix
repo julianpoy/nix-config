@@ -33,6 +33,6 @@
     # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = lib.mkDefault config.boot.kernelPackages.nvidiaPackages.production;
   };
 }
