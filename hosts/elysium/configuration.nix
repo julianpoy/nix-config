@@ -45,10 +45,16 @@
     options = ["defaults" "nofail"];
   };
 
+  fileSystems."/mnt/extssd" = {
+    device = "/dev/disk/by-partlabel/extssd";
+    fsType = "ext4";
+    options = ["defaults" "nofail"];
+  };
+
   fileSystems."/var/lib/libvirt/qemu/save" = {
-    device = "/mnt/blkssd/libvirt-save";
+    device = "/mnt/extssd/libvirt-save";
     fsType = "none";
-    options = ["bind" "nofail" "x-systemd.requires-mounts-for=/mnt/blkssd"];
+    options = ["bind" "nofail" "x-systemd.requires-mounts-for=/mnt/extssd"];
   };
 
   systemd.services.libvirt-guests = {
