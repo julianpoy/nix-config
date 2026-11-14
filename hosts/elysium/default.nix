@@ -21,7 +21,7 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/system/amd-pstate-balance-power.nix
     ../../mixins/system/garbage-collection.nix
     ../../mixins/system/k3s-nvidia.nix
-    ../../mixins/system/latest-kernel.nix
+    ({pkgs, ...}: {boot.kernelPackages = pkgs.linuxPackages_6_18;})
     ../../mixins/system/libvirt-kvm.nix
     ../../mixins/system/nvidia-for-server.nix
     ../../mixins/system/swap64.nix
