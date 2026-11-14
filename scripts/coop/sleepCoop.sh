@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ssh root@thanatos.local.tartarus.cloud -t 'systemctl suspend; bash -l'
-ssh root@erinyes.local.tartarus.cloud -t 'systemctl suspend; bash -l'
-ssh root@atlas.local.tartarus.cloud -t 'systemctl suspend; bash -l'
-ssh root@theia.local.tartarus.cloud -t 'systemctl suspend; bash -l'
+ssh root@coop-thanatos.local -t 'systemctl suspend; bash -l'
+ssh root@coop-erinyes.local -t 'systemctl suspend; bash -l'
+ssh root@coop-atlas.local -t 'systemctl suspend; bash -l'
+ssh root@coop-theia.local -t 'systemctl suspend; bash -l'
 
