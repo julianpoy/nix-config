@@ -17,5 +17,6 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/shared/boush
 
     ../../mixins/system/bluetooth.nix
+    ../../mixins/system/garbage-collection.nix
   ];
 }

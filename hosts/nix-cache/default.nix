@@ -17,6 +17,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
 
     ../../mixins/cli/fish.nix
     ../../mixins/cli/neovim.nix
+    ../../mixins/system/garbage-collection.nix
     ../../mixins/system/latest-kernel.nix
     # ../../mixins/system/libvirt-kvm.nix
   ];

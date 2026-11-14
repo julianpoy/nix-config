@@ -39,6 +39,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/system/bluetooth.nix
     ../../mixins/system/fingerprint.nix
     ../../mixins/system/fwupd.nix
+    ../../mixins/system/garbage-collection.nix
     ../../mixins/system/swap32.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/yubikey.nix
