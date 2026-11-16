@@ -9,6 +9,7 @@ keys:
     - &coop-erinyes age1fgpzxkqwpgnpvy0eg6cv29sxv0sdp8l0sv8h09kmm7sma3mnypks69ntrq
     - &coop-theia age1pgwfxw4d67zuf276cezzf6ypg2gtn4p6g4x5he4q8yvfxh9flusshharlu
     - &coop-thanatos age1dmu3shzf7q4am0n096g3hmduhd0tms0s4rmskf939kuzxun20u9sdxzsnf
+    - &elysium age1zsnqxvsz6k6qqeysd9fa3kmm3rdzhfne4khsw3pjlg93lzl9sf2sdjh0c4
 
 creation_rules:
   - path_regex: secrets/shared/.*
@@ -43,6 +44,7 @@ creation_rules:
           - *coop-erinyes
           - *coop-theia
           - *coop-thanatos
+          - *elysium
 
   - path_regex: secrets/chris/.*
     key_groups:

@@ -19,6 +19,8 @@ specialArgs.nixpkgs-2511.lib.nixosSystem {
     ../../mixins/cli/fish.nix
     ../../mixins/cli/neovim.nix
     ../../mixins/system/amd-pstate-balance-power.nix
+    ../../mixins/system/coder-attic-precache.nix
+    ../../mixins/system/coder-base-image.nix
     ../../mixins/system/garbage-collection.nix
     ../../mixins/system/k3s-nvidia.nix
     ({pkgs, ...}: {boot.kernelPackages = pkgs.linuxPackages_6_18;})
