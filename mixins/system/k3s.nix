@@ -11,7 +11,7 @@
   ];
   services.k3s = {
     enable = true;
-    package = pkgs.k3s_1_33;
+    package = pkgs.k3s_1_36;
     role = "agent";
     tokenFile = "/home/k3speeringtoken";
     serverAddr = "https://10.0.4.4:6443";
