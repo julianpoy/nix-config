@@ -18,6 +18,7 @@
       ./libvirt.nix
       ./orca-slicer
       ./shell.nix
+      ./wallpaper.nix
       ./yubikey-ssh.nix
     ];
   };
