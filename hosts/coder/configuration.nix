@@ -23,6 +23,8 @@
     };
   };
 
+  nix.settings.extra-substituters = lib.mkForce ["https://attic.tartarus.cloud/tartarus?priority=30"];
+
   security.wrappers.coder = {
     source = "${pkgs.coder}/bin/coder";
     capabilities = "cap_net_admin+ep";
