@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: let
@@ -10,18 +11,26 @@
     endpoint = "https://attic.tartarus.cloud/"
     token-file = "${config.sops.secrets.attic-push-token.path}"
   '';
+
+  postBuildHook = pkgs.writeShellApplication {
+    name = "attic-post-build-hook";
+    runtimeInputs = [pkgs.systemd];
+    text = ''
+      read -r -a output_paths <<< "$OUT_PATHS"
+
+      systemd-run --no-block --collect --quiet \
+        --description="Push build outputs to attic" \
+        --property=SyslogIdentifier=attic-push \
+        --property=Restart=on-failure \
+        --property=RestartSec=30 \
+        --property=CPUSchedulingPolicy=idle \
+        --property=IOSchedulingClass=idle \
+        --setenv=XDG_CONFIG_HOME=${atticConfig} \
+        ${lib.getExe pkgs.attic-client} push --no-closure tartarus "''${output_paths[@]}" || true
+    '';
+  };
 in {
   sops.secrets.attic-push-token.sopsFile = ../../secrets/attic/push-token.yaml;
 
-  systemd.services.attic-watch-store = {
-    wantedBy = ["multi-user.target"];
-    wants = ["network-online.target"];
-    after = ["network-online.target"];
-    environment.XDG_CONFIG_HOME = "${atticConfig}";
-    serviceConfig = {
-      ExecStart = "${pkgs.attic-client}/bin/attic watch-store tartarus";
-      Restart = "always";
-      RestartSec = 30;
-    };
-  };
+  nix.settings.post-build-hook = lib.getExe postBuildHook;
 }
