@@ -61,6 +61,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/system/garbage-collection.nix
     ../../mixins/system/latest-kernel.nix
     ../../mixins/system/plasma-custom-acceleration
+    ../../mixins/system/scx-lavd.nix
     ../../mixins/system/swap32.nix
     ../../mixins/system/thermald.nix
     ../../mixins/system/thunderbolt.nix
