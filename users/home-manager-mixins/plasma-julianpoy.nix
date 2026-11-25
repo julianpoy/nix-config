@@ -34,6 +34,12 @@
 
       input.keyboard.options = ["caps:escape"];
 
+      powerdevil = lib.mkIf (osConfig.boot.resumeDevice != "") {
+        AC.whenSleepingEnter = "standbyThenHibernate";
+        battery.whenSleepingEnter = "standbyThenHibernate";
+        lowBattery.whenSleepingEnter = "standbyThenHibernate";
+      };
+
       input.touchpads = [
         {
           name = "PIXA3854:00 093A:1343 Touchpad";
