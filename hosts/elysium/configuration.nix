@@ -57,6 +57,29 @@
     options = ["bind" "nofail" "x-systemd.requires-mounts-for=/mnt/extssd"];
   };
 
+  fileSystems."/mnt/vmssd" = {
+    device = "/dev/disk/by-partlabel/vmssd";
+    fsType = "ext4";
+    options = ["defaults" "nofail"];
+  };
+
+  fileSystems."/home/tartarus/coder-libvirt-pool" = {
+    device = "/mnt/vmssd/coder-libvirt-pool";
+    fsType = "none";
+    options = ["bind" "nofail" "x-systemd.requires-mounts-for=/mnt/vmssd"];
+  };
+
+  fileSystems."/var/lib/libvirt/images" = {
+    device = "/mnt/vmssd/libvirt-images";
+    fsType = "none";
+    options = ["bind" "nofail" "x-systemd.requires-mounts-for=/mnt/vmssd"];
+  };
+
+  systemd.services.libvirtd.unitConfig.RequiresMountsFor = [
+    "/home/tartarus/coder-libvirt-pool"
+    "/var/lib/libvirt/images"
+  ];
+
   systemd.services.libvirt-guests = {
     wants = ["var-lib-libvirt-qemu-save.mount"];
     after = ["var-lib-libvirt-qemu-save.mount"];
