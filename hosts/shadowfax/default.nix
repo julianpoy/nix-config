@@ -43,6 +43,7 @@ specialArgs.nixpkgs-2605.lib.nixosSystem {
     ../../mixins/applications/zoom-us.nix
     ../../mixins/cli/claude-code.nix
     ../../mixins/cli/coder.nix
+    ../../mixins/cli/docker.nix
     ../../mixins/cli/fish.nix
     ../../mixins/cli/github.nix
     ../../mixins/cli/litra-rs.nix
