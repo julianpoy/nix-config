@@ -16,6 +16,9 @@
   # https://github.com/NixOS/nixpkgs/issues/159082
   nix.settings.trusted-users = ["@wheel"];
 
+  nix.daemonCPUSchedPolicy = "idle";
+  nix.daemonIOSchedClass = "idle";
+
   networking.networkmanager.enable = true;
   networking.networkmanager.settings.connectivity = {
     uri = "http://nmcheck.gnome.org/check_network_status.txt";

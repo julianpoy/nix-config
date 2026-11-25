@@ -29,9 +29,6 @@
 in {
   sops.secrets.attic-push-token.sopsFile = ../../secrets/attic/push-token.yaml;
 
-  nix.daemonCPUSchedPolicy = "idle";
-  nix.daemonIOSchedClass = "idle";
-
   systemd.services.coder-attic-precache = {
     description = "Build the coder workspace system and push it to attic";
     wants = ["network-online.target"];

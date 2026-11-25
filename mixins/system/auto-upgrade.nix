@@ -48,9 +48,6 @@ in {
     };
   };
 
-  nix.daemonCPUSchedPolicy = "idle";
-  nix.daemonIOSchedClass = "idle";
-
   systemd.user.services.nixos-update-notify = {
     description = "Notify when a NixOS update is waiting for a reboot";
     serviceConfig = {
