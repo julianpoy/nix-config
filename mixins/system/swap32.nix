@@ -10,4 +10,6 @@
       size = 32 * 1024;
     }
   ];
+
+  boot.zswap.enable = true;
 }
