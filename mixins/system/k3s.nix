@@ -20,7 +20,14 @@
     extraFlags = [
       "--node-taint=dedicated=compute:NoSchedule"
       "--node-label=compute=true"
-      "--kubelet-arg=allowed-unsafe-sysctls=net.ipv4.ip_forward,net.ipv6.conf.all.forwarding,net.ipv6.conf.all.disable_ipv6,net.ipv6.conf.default.disable_ipv6"
     ];
+    extraKubeletConfig = {
+      allowedUnsafeSysctls = [
+        "net.ipv4.ip_forward"
+        "net.ipv6.conf.all.forwarding"
+        "net.ipv6.conf.all.disable_ipv6"
+        "net.ipv6.conf.default.disable_ipv6"
+      ];
+    };
   };
 }
